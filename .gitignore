@@ -24,3 +24,4 @@ out/
 build
 release.properties
 gradle.properties
+/libs/OnionKit/

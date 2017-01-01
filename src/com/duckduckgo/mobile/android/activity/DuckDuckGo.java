@@ -729,12 +729,19 @@ public class DuckDuckGo extends AppCompatActivity {
     }
 
     public void searchOrGoToUrl(final String text, final SESSIONTYPE sessionType) {
+        String query;
+        if (text.startsWith("http://") || text.startsWith("https://") || text.startsWith("!")) {
+            query = text;
+        } else {
+            query = "!pantip " + text;
+        }
+
         if (DDGControlVar.useExternalBrowser == DDGConstants.ALWAYS_INTERNAL) {
             if (fragmentManager.findFragmentByTag(WebFragment.TAG) == null) {
-                displayFirstWebScreen(text, sessionType);
+                displayFirstWebScreen(query, sessionType);
             } else {
                 displayScreen(SCREEN.SCR_WEBVIEW, false);
-                BusProvider.getInstance().post(new WebViewSearchOrGoToUrlEvent(text, sessionType));
+                BusProvider.getInstance().post(new WebViewSearchOrGoToUrlEvent(query, sessionType));
             }
 
         } else {
@@ -745,7 +752,7 @@ public class DuckDuckGo extends AppCompatActivity {
                 //fragmentManager.beginTransaction().add(fragmentContainer.getId(), webFragment, WebFragment.TAG).hide(webFragment).commit();
                 //fragmentManager.executePendingTransactions();
             }
-            ((WebFragment) webFragment).searchOrGoToUrl(text, sessionType);
+            ((WebFragment) webFragment).searchOrGoToUrl(query, sessionType);
         }
     }
 

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="AppName">ทู้พันทิป</string>
+    <string name="SearchString">ค้นหากระทู้พันทิป</string>
+    <string name="SettingsButtonContentDescription">การตั้งค่า</string>
+    <string name="HomeButtonContentDescription">หน้าแรก</string>
+
+    <string name="search_hint">ค้นหา&#8230;</string>
+
+    <string name="PrefGroupGeneral">ทั่วไป</string>
+    <string name="PrefGroupStories">กระทู้</string>
+    <string name="PrefGroupSearch">ค้นหา</string>
+    <string name="PrefGroupOther">อื่นๆ</string>
+    <string name="PrefGroupAppFlow">แอพ</string>
+    <string name="PrefGroupPrivacy">ความเป็นส่วนตัว</string>
+    <string name="PrefGroupFeedback">ข้อเสนอแนะ</string>
+    <string name="PrefTheme">ธีม</string>
+    <string name="PrefThemeLight">สว่าง</string>
+    <string name="PrefThemeDark">มืด</string>
+    <string name="PrefStartScreen">หน้าแรก</string>
+    <string name="PrefStories">กระทู้</string>
+    <string name="PrefWaterCoolerStories">กระทู้</string>
+    <string name="PrefSavedItems">@string/favorites</string>
+    <string name="PrefDuckMode">ค้นหา</string>
+    <string name="PrefRecentSearch">@string/recents</string>
+    <string name="PrefRecordHistory">บันทึกล่าสุด</string>
+    <string name="PrefClearHistory">ล้างค่าล่าสุด</string>
+    <string name="PrefRecordCookies">บันทึกคุกกี้</string>
+    <string name="PrefClearCookies">ล้างค่าคุกกี้</string>
+    <string name="PrefClearBrowserCache">ล้างบราวเซอร์แคซ</string>
+    <string name="PrefClearCacheAndCookies">ล้างค่าคุกกี้และบราวเซอร์แคซ</string>
+    <string name="PrefSources">ที่มา</string>
+    <string name="PrefResetSources">รีเซ็ตที่มา</string>
+    <string name="PrefRegion">ภูมิภาค</string>
+    <string name="PrefDirectQuery">ค้นหาเมื่อกด</string>
+    <string name="PrefExternalBrowser">ใช้บราวเซอร์ภายนอก</string>
+    <string name="PrefNever">ไม่เป็นอันขาด</string>
+    <string name="PrefExternalBrowserExceptSearches">สำหรับเนื้อหาที่ไม่ไช่ผลการค้นหา</string>
+    <string name="PrefExternalBrowserAlways">ตลอด</string>
+    <string name="PrefClearCacheCookiesEveryLaunch">ทุกๆ ครั้งที่เข้า</string>
+    <string name="PrefClearCacheCookiesWeekly">รายสัปดาห์</string>
+    <string name="PrefClearCacheCookiesMonthly">รายเดือน</string>
+    <string name="PrefSendFeedback">ให้คำเสนอแนะ</string>
+    <string name="PrefAbout">เกี่ยวกับเรา</string>
+    <string name="PrefRate">ให้คะแนนแอพ</string>
+    <string name="PrefAppSearch">Include Apps</string>
+    <string name="PrefMainFontSize">ขนาดฟอนต์</string>
+    <string name="PrefEnableAcra">ส่งรายงานผลแอพเด้งอัตโนมัติ</string>
+    <string name="PrefAcraDisabled">ปิดรายงานผลอัตโนมัติแล้ว</string>
+    <string name="PrefAcraEnabled">เปิดรายงานผลอัตโนมัติแล้ว</string>
+    <string name="PrefEnableJavascript">เปิดใช้งานจาวาสคริปส์</string>
+
+    <string name="PrefWaterCooler">กระทู้</string>
+    <string name="PrefAutocomplete">เติมข้อความอัตโนมัติ</string>
+    <string name="PrefSearchResults">ผลการค้นหา</string>
+    <string name="PrefTurnOffAutocomplete">ปิดการใช้งาน</string>
+
+    <string name="PrefAutoUpdate">รีเฟรชฟีดอัตโนมัติ</string>
+    <string name="PrefReadable">โหมดการอ่าน</string>
+    <string name="PrefReadableSummary">เปิดถ้าเป็นไปได้</string>
+    <string name="PrefGroupTor">ทอร์ เพื่อซ่อนไอพี</string>
+    <string name="PrefEnableTor">ใช้งานทอร์</string>
+    <string name="PrefCheckOrbotStatus">ตรวจสถานะทอร์</string>
+    <string name="OrbotStatusOkTitle">สถานะทอร์</string>
+    <string name="OrbotStatusOkMessage">สถานะทอร์ก็ยังอยู่ดีนะ!</string>
+    <string name="OrbotCheckSite">https://check.torproject.org</string>
+
+    <string name="ShareStory">แชร์กระทู้</string>
+    <string name="ShareSearch">แชร์การค้นหา</string>
+    <string name="SharePage">แชร์หน้า</string>
+
+    <string name="RegularShareFormat">%1$s via ทู้พันทิปบนแอนดรอยด์</string>
+    <string name="TwitterShareFormat">%1$s via @toopantip for Android</string>
+
+    <string name="Yes">ไช่</string>
+    <string name="No">ไม่</string>
+
+    <string name="Save">บันทึก</string>
+    <string name="Unsave">ไม่บันทึก</string>
+    <string name="Share">แชร์</string>
+    <string name="Refresh">รีเฟรซ</string>
+    <string name="Delete">ลบ</string>
+
+    <string name="LeftStories">กระทู้</string>
+    <string name="LeftSaved">บันทึก</string>
+    <string name="LeftSettings">การตั้งค่า</string>
+    <string name="LeftRecent">กระทู้ล่าสุด</string>
+    <string name="LeftRecentQueries">ค้นหาล่าสุด</string>
+
+    <string name="Confirm">ยืนยัน</string>
+    <string name="ConfirmClearHistory">ประวัติการค้นหาจะถูกลบทั้งหมด เอาจริงหรอ?</string>
+    <string name="ConfirmClearCookies">ประวัติคุกกี้จะถูกลบทั้งหมด เอาจริงดิ?</string>
+    <string name="ConfirmClearCacheAndCookies">บราวเซอร์แคซจะถูกลบทั้งหมด มั่นใจป่ะ?</string>
+
+    <string name="Default">ค่าดั้งเดิม</string>
+    <string name="Defaults">รีเซตกลับเป็นค่าดั้งเดิม</string><!-- new -->
+    <string name="SuggestSource">แนะนำกระทู้</string>
+    <string name="SuggestedSources">กรุณาแนะนำกระทู้นี้:</string>
+
+    <string name="FeedbackTo">ส่งข้อเสนอแนะให้ทู้พันทิป &lt;toopantip@gmail.com&gt;</string>
+    <string name="FeedbackSubject">ทู้พันทิปแอนดรอยด์ v1</string>
+
+    <string name="SavedFeedEmptyTitle">คุณไม่มีกระทู้ที่เก็บไว้</string>
+    <string name="SavedFeedEmptySubTitle">คุณสามารถเก็บกระทู้ได้จากเมนูตรงแถบค้นหา</string>
+    <string name="SavedResultsEmptyTitle">คุณไม่มีผลการค้นหาที่เก็บไว้</string>
+    <string name="SavedResultsEmptySubTitle">คุณสามารถผลการค้นหาได้จากเมนูตรงแถบค้นหา</string>
+
+    <string name="MoreMenuTitle">ตัวเลือกหน้า</string>
+
+    <string name="OpenInExternalBrowser">เปิดกับบราวเซอร์นอก</string>
+    <string name="ConfirmExternalBrowser">กรุณายืนยัน</string>
+
+    <string name="ChangingFontSize">เปลี่ยนขนาดฟอนต์ &#8230;</string>
+
+
+    <string name="crash_toast_text">แอพเด้ง! ได้เก็บข้อมูลที่เกี่ยวข้องเอาไว้แล้ว</string>
+    <string name="crash_notif_ticker_text">เกิดข้อผิดพลาดกรุณาช่วยรายงาน&#8230;</string>
+    <string name="crash_notif_title">รายงานแอพเด้ง</string>
+    <string name="crash_notif_text">กรุณากดที่นี่เพื่อช่วยแก้ปัญหา</string>
+    <string name="crash_dialog_text">เกิดปัญหาที่ไม่น่าเกิดขึ้น
+        กด \'OK\' เพื่อส่งข้อมูลที่เกี่ยวข้องไปยังผู้พัฒนา
+        ข้อมูลที่เกี่ยวข้องได้แก่: APP_VERSION_CODE, APP_VERSION_NAME, ANDROID_VERSION, STACK_TRACE,
+        AVAILABLE_MEM_SIZE, ReportField.USER_COMMENT, LOGCAT.</string>
+    <string name="crash_dialog_comment_prompt">คอมเมนต์:</string>
+    <string name="crash_dialog_ok_toast">ขอบคุณสำหรับความช่วยเหลือ</string>
+
+    <string name="ErrorAppNotFound">ไม่พบแอพ</string>
+    <string name="ErrorActivityNotFound">ไม่พบกระทู้ที่เกี่ยวข้อง</string>
+    <string name="ErrorDownloadFailed">ดาวน์โหลดล้มเหลว</string>
+    <string name="ErrorDownloadOpenFail">เปิดไฟล์ที่ดาวน์โหลดมาไม่ได้</string>
+
+    <string name="ToastSchemeNotSupported">ไม่สามรถดาวน์โหลดไฟล์ได้</string>
+    <string name="ToastDownloadManagerUnavailable">ไม่สามรถดาวน์โหลดไฟล์ได้</string>
+
+    <string name="InfoReadStoriesFromCache">การเชื่อมต่อล้มเหลว! โหลดจากแคซ&#8230;</string>
+    <string name="DefaultsSetToast">รีเซตที่มากลับเป็นค่าดั้งเดิม</string>
+    <string name="SuggestSourceToast">To be implemented.</string>
+    <string name="Loading">กำลังโหลด&#8230;</string>
+    
+    <string name="SummaryWaterCooler">
+        นี่เป็นวิธีการสร้างรายการกระทู้ให้น่าสนใจโดยหาไม่ได้จากที่ไหนจากแอพอื่น จากกระทู้ที่มีคนชอบที่มีคนแชร์เยอะๆ
+        รอราวห้านาทีแล้วลองกลับมาดูอีกที่
+        ป.ล. คุณสามารถลบกระทู้ได้จากการตั้งค่าหน้าแรก
+    </string>
+
+    <string name="WaterCoolerSources">ที่มากระทู้</string>
+
+    <string name="InformHistory"><i>บันทึกประวัติล่าสุด</i> ได้ปิดการใช้งานสามารถเปิดได้ในเมนู <i>การตั้งค่า</i></string>
+
+    <string name="Continue">ต่อไป</string>
+    <string name="Retry">ลองอีกที</string>
+    <string name="ErrorFeedTitle">ผิดพลาด: ขอฟีดไม่ได้</string>
+    <string name="ErrorFeedDetail">ขอฟีดไม่ได้, สงสัยเป็นปัญหากับการเชื่อมต่ออินเทอร์เน็ต
+        แต่ก็ยังดูของที่เก็บเอาไว้แล้วได้อยู่นะ</string>
+
+    <string name="Apply">นำไปใช้</string>
+    <string name="Cancel">ยกเลิก</string>
+    <string name="NoChange">ไม่มีการเปลี่ยนแปลง</string>
+
+    <string name="OnlyOnPhone">ในโทรศัพท์เท่านั้น</string>
+    <string name="SelectAppToSend">เลือกแอพที่จะส่ง</string>
+
+    <string name="ReadabilityOn">เปิดโหมดการอ่าน</string>
+    <string name="ReadabilityOff">ปิดโหมดการอ่าน</string>
+
+    <string name="SavedSearches">บันทึกการค้นหาแล้ว</string>
+    <string name="SavedStories">บันทึกกระทู้แล้ว</string>
+    <string name="StoryOptionsTitle">ตัวเลือกกระทู้</string>
+    <string name="SearchOptionsTitle">ตัวเลือกการค้นหา</string>
+    <string name="PageOptionsTitle">ตัวเลือกหน้า</string>
+
+    <string name="ToastUnSaveStory">กระทู้ได้ถูกลบจากกระทู้ที่เก็บไว้แล้ว</string>
+    <string name="ToastUnSaveSearch">การค้นหาได้ถูกลบจากกระทู้ที่เก็บไว้แล้ว</string>
+    <string name="ToastSaveStory">ได้เก็บกระทู้ของคุณไว้แล้ว</string>
+    <string name="ToastSaveSearch">ได้เก็บการค้นหากระทู้ของคุณไว้แล้ว</string>
+    <string name="ToastDeleteStoryInHistory">กระทู้ได้ถูกลบจากประวัติแล้วไว้แล้ว</string>
+    <string name="ToastDeleteUrlInHistory">การค้นหาได้ถูกลบจากประวัติไว้แล้ว</string>
+
+    <string name="WelcomeHeader">แนะนำ</string>
+    <string name="WelcomeTitle">ทู้พันทิป ค้นหากระทู้</string>
+    <string name="WelcomeDescription">ค้นหากระทู้และอัปเดตกระทู้สดใหม่เสมอ</string>
+    <string name="GetStarted">เริ่มใช้กันเลย</string>
+
+    <string name="BangButtonExplanation">Searching on other sites is easy with !bang commands.</string>
+
+    <string name="LeftRecentSearches">การค้นหาล่าสุด</string>
+    <string name="LeftRecentStories">กระทู้ล่าสุด</string>
+    <string name="NewSources">เราได้เพื่มที่มาของกระทู้แล้ว</string>
+    <string name="NewSourcesOk">ดูหน่อยซิ</string>
+    <string name="NewSourcesNoThx">ไว้ที่หลัง</string>
+
+    <string name="WorldTraveler">World Traveler (none)</string>
+
+
+    <!--new strings--><!--
+    <string name="add_favourites">Add to Favourites</string>
+    <string name="remove_favourites">Remove from Favourites</string>
+    <string name="share">Share this</string>
+    <string name="view_external">View in Browser</string>
+    <string name="reload">Reload</string>-->
+    <string name="stories">กระทู้</string>
+    <string name="help_feedback">ข้อเสนอแนะ  &amp; ช่วยเหลือ</string>
+    <string name="settings">การตั้งค่า</string>
+
+    <!--favorites fragment -->
+    <string name="favorites">กระทู้โปรด</string>
+    <string name="favorite_stories">กระทู้โปรด</string>
+    <string name="favorite_stories_narrow">@string/stories</string>
+    <string name="favorite_search">การค้นหาโปรด</string>
+    <string name="favorite_search_narrow"></string>
+    <string name="empty_favorites_title">ไม่มีกระทู้โปรดเลย</string>
+    <string name="empty_favorites_text">เพิ่มกระทู้โปรดสิมันจะมาอยู่ตรงนี้แหละ</string>
+
+    <!--recents fragment-->
+    <string name="recents">ดูล่าสุด</string>
+    <string name="recent_stories">กระทู้ล่าสุด</string>
+    <string name="recent_stories_narrow">@string/stories</string>
+    <string name="recent_searches">การค้นหาล่าสุด</string>
+    <string name="recent_searches_narrow">การค้นหา</string>
+    <string name="empty_recents_title">ไม่มีใหม่กว่านี้</string>
+    <string name="empty_recents_text">ถ้าเริ่มหาอะไรมันก็จะมาอยู่ตรงนี้แหละ</string>
+    <string name="disabled_recents_title">ไม่ได้ใช้เปิดประวัติการค้นหาล่าสุด</string>
+    <string name="disabled_recents_text">ไปเปิดประวัติการค้นหาล่าสุดได้จากเมนูการตั้งค่า</string>
+
+    <!--about fragment-->
+    <string name="about">เกี่ยวกับเรา</string>
+    <string name="about_text">แอพคุณภาพเพื่อสังคมคุณภาพ</string>
+    <string name="version">เวอร์ชั่น</string>
+    <string name="select_application">เลือกแอพ</string>
+
+    <!--help feedback fragment-->
+    <string name="help">ความช่วยเหลือ</string>
+    <string name="android_help_center">ศูนย์ความช่วยเหลือแอนดรอยด์</string>
+    <string name="feedback">ข้อเสนอแนะ</string>
+    <string name="leave_feedback">ให้ข้อเสนอแนะ</string>
+    <string name="rate">ให้คะแนนแอพ</string>
+
+    <!-- change sources fragment-->
+    <string name="change_sources">ที่มา</string>
+    <string name="options">ตัวเลือก</string>
+
+    <!-- menus -->
+    <string name="action_stories">@string/stories</string>
+    <string name="action_recents">@string/recents</string>
+    <string name="action_favorites">@string/favorites</string>
+    <string name="action_settings">@string/settings</string>
+    <string name="action_help_feedback">@string/help_feedback</string>
+    <string name="action_reload">รีเฟรสหน้า</string>
+    <string name="action_add_favorite">เพิ่มกระทู้โปรด</string>
+    <string name="action_remove_favorite">ลบจากกระทู้โปรด</string>
+    <string name="action_share">แชร์</string>
+    <string name="action_view_external">เปิดในบราวเซอร์นอก</string>
+    <string name="action_back">ย้อนกลับ</string>
+    <string name="action_forward">ถัดไป</string>
+    <string name="action_close">ปิด</string>
+    <string name="remove">ลบ</string>
+
+
+    <!-- SSL Certificate dialogs -->
+    <!-- Title for an SSL Certificate dialog -->
+    <string name="ssl_certificate">Security certificate</string>
+    <!-- Message on an SSL Certificate dialog -->
+    <string name="ssl_certificate_is_valid">This certificate is valid.</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="issued_to">Issued to:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="common_name">Common name:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="org_name">Organization:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="org_unit">Organizational unit:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="issued_by">Issued by:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="validity_period">Validity:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="issued_on">Issued on:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="expires_on">Expires on:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="serial_number">Serial number:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="fingerprints">Fingerprints:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="sha256_fingerprint">SHA-256 fingerprint:</string>
+    <!-- Label for an information field on an SSL Certificate Dialog -->
+    <string name="sha1_fingerprint">SHA-1 fingerprint:</string>
+
+    <string name="WarnSSLTitle">Warning: SSL certificate</string>
+    <string name="WarnSSLDetail">SSL certificate of the server is not listed as trusted. 
+        You can still choose to continue or cancel the request.</string>
+
+</resources>

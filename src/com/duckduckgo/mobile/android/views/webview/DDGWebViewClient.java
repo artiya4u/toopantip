@@ -177,6 +177,25 @@ public class DDGWebViewClient extends WebViewClient {
         super.onPageFinished(view, url);
         Log.e("onpagefinished", "url: " + url);
         mLoaded = true;
+        if (url.startsWith("http://search.pantip.com")) {
+            Log.e("onpagefinished", "url: " + url);
+            view.loadUrl("javascript:(function() { " +
+                    "function getElementByXpath(path) {\n" +
+                    "  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;\n" +
+                    "}\n" +
+                    "\tgetElementByXpath('//td/table/tbody/tr').setAttribute('style', 'display:none');\n" +
+                    "\tgetElementByXpath('//form/table/tbody/tr[2]').setAttribute('style', 'display:none');\n" +
+                    "\tgetElementByXpath('//tr[3]/td/table/tbody/tr').setAttribute('style', 'display:none');\n" +
+                    "\tgetElementByXpath('//tr[3]/td/table/tbody/tr[2]/td[2]').setAttribute('style', 'display:none');\n" +
+                    "\tgetElementByXpath('//tr[3]/td/table/tbody/tr[2]/td[3]').setAttribute('style', 'display:none');\n" +
+                    "\tvar meta = document.createElement('meta');\n" +
+                    "meta.name = \"viewport\";\n" +
+                    "meta.content = \"width=device-width, initial-scale=1.0\";\n" +
+                    "document.getElementsByTagName('head')[0].appendChild(meta);" +
+                    "})()");
+        }
+
+        mLoaded = true;
 
         DDGControlVar.mCleanSearchBar = false;
 
