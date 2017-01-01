@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">DuckDuckGo</string>
-    <string name="SearchString">DuckDuckGo-Suche</string>
+    <string name="AppName">TooPantip</string>
+    <string name="SearchString">TooPantip-Suche</string>
     <string name="SettingsButtonContentDescription">Einstellungen</string>
     <string name="HomeButtonContentDescription">Hauptansicht</string>
     
@@ -58,8 +58,8 @@
     <string name="ShareStory">Geschichte teilen</string>
     <string name="ShareSearch">Suche teilen</string>
     <string name="SharePage">Seite teilen</string>
-    
-    <string name="RegularShareFormat">%1$s via DuckDuckGo für Android</string>
+
+    <string name="RegularShareFormat">%1$s via TooPantip für Android</string>
     <string name="TwitterShareFormat">%1$s via @duckduckgo für Android</string>
     
     <string name="Yes">Ja</string>
@@ -86,9 +86,9 @@
     <string name="Defaults">Vorgaben</string>
     <string name="SuggestSource">Eine Quelle vorschlagen</string>
     <string name="SuggestedSources">Bitte diese Quellen einfügen:</string>
-    
-    <string name="FeedbackTo">DuckDuckGo-Rückmeldungen &lt;help@duckduckgo.com&gt;</string>
-    <string name="FeedbackSubject">DuckDuckGo Android v2</string>
+
+    <string name="FeedbackTo">TooPantip-Rückmeldungen &lt;toopantip@gmail.com&gt;</string>
+    <string name="FeedbackSubject">TooPantip Android v2</string>
     
     <string name="SavedFeedEmptyTitle">Keine gespeicherten Geschichten</string>
     <string name="SavedFeedEmptySubTitle">Geschichten können im Menü der Suchleiste gespeichert werden.</string>
@@ -105,7 +105,7 @@
 
     <string name="crash_toast_text">Anwendung abgestürzt! Absturzbezogene Daten werden gesammelt und nach Bestätigung gesendet.</string>
     <string name="crash_notif_ticker_text">Unerwarteter Fehler, bitte senden Sie einen Bericht&#8230;</string>
-    <string name="crash_notif_title">DuckDuckGo-Absturzbericht</string>
+    <string name="crash_notif_title">TooPantip-Absturzbericht</string>
     <string name="crash_notif_text">Bitte hier klicken, um bei der Fehlerbehebung zu helfen.</string>
     <string name="crash_dialog_text">Ein unerwarteter Fehler ist aufgetreten.
         Bitte helfen Sie uns, das Problem zu beheben, indem Sie mit \'OK\' das Senden von absturzbezogenen Daten bestätigen. 
@@ -165,7 +165,7 @@
     <string name="ToastDeleteUrlInHistory">Die Adresse wurde aus Ihrem Verlauf entfernt.</string>
     
     <string name="WelcomeHeader">Willkommen</string>
-    <string name="WelcomeTitle">DuckDuckGo-Suche &amp; Geschichten</string>
+    <string name="WelcomeTitle">TooPantip-Suche &amp; Geschichten</string>
     <string name="WelcomeDescription">
         Anonymes Suchen.\nSchnelles Finden.\nInformiert bleiben.</string>
     <string name="GetStarted">Loslegen</string>

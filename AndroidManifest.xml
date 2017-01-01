@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.duckduckgo.mobile.android"
     android:installLocation="auto"
-    android:versionCode="20"
-    android:versionName="2.0">
+    android:versionCode="76"
+    android:versionName="3.0.14">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="23" />
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="23" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>

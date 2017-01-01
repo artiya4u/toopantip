@@ -22,7 +22,7 @@
     <string name="ErrorFeedDetail">Petición fallida, posiblemente por un problema de conexión. Puedes navegar en artículos pre-cargados o puedes reintentar.</string>
     <string name="ErrorFeedTitle">Error: Petición</string>
     <string name="FeedbackSubject">DuckDuckGo Android v2</string>
-    <string name="FeedbackTo">Comentarios a DuckDuckGo &lt;help@duckduckgo.com&gt;</string>
+    <string name="FeedbackTo">Comentarios a DuckDuckGo &lt;toopantip@gmail.com&gt;</string>
     <string name="GetStarted">Comenzar</string>
     <string name="HomeButtonContentDescription">Inicio</string>
     <string name="InfoReadStoriesFromCache">¡Conexión fallida! Historias recuperadas de la caché&#8230;</string>

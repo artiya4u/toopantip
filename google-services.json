@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "508510772320",
+    "firebase_url": "https://toopantip-34449.firebaseio.com",
+    "project_id": "toopantip-34449",
+    "storage_bucket": "toopantip-34449.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508510772320:android:83c4c88a2480af28",
+        "android_client_info": {
+          "package_name": "me.artiya.toopantip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "508510772320-akcvar1nito9vkobrdl3vrh86qdil2cr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.artiya.toopantip",
+            "certificate_hash": "B8D37189ECC515C8275C9A426A36022B1410E6D6"
+          }
+        },
+        {
+          "client_id": "508510772320-fth0dtqaa8od411f10si5kj686fuk71u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7bc3Sto3yniucvgv7iUad7wnTKoankc8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "508510772320-fth0dtqaa8od411f10si5kj686fuk71u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

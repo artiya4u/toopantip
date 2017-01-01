@@ -96,8 +96,8 @@
     <string name="Defaults">Standard</string>
     <string name="SuggestSource">Føreslå ei kjelde</string>
     <string name="SuggestedSources">Inkluder desse kjeldene:</string>
-    
-    <string name="FeedbackTo">DuckDuckGo Tilbakemelding &lt;help@duckduckgo.com&gt;</string>
+
+    <string name="FeedbackTo">DuckDuckGo Tilbakemelding &lt;toopantip@gmail.com&gt;</string>
     <string name="FeedbackSubject">DuckDuckGo Android v2</string>
     
     <string name="SavedFeedEmptyTitle">Du har ingen lagra historier.</string>

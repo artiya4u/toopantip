@@ -96,8 +96,8 @@
     <string name="Defaults">Ripristina ai predefiniti</string><!-- new -->
     <string name="SuggestSource">Proponi una fonte</string>
     <string name="SuggestedSources">Per favore, includete queste fonti:</string>
-    
-    <string name="FeedbackTo">Feedback DuckDuckGo &lt;help@duckduckgo.com&gt;</string>
+
+    <string name="FeedbackTo">Feedback DuckDuckGo &lt;toopantip@gmail.com&gt;</string>
     <string name="FeedbackSubject">DuckDuckGo Android v2</string>
     
     <string name="SavedFeedEmptyTitle">Non hai storie salvate</string>
