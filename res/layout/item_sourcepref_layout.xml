@@ -4,7 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-    <com.duckduckgo.mobile.android.download.AsyncImageView
+    <me.artiya.toopantip.android.download.AsyncImageView
         android:layout_width="@dimen/source_icon_dimen"
         android:layout_height="@dimen/source_icon_dimen"
         android:layout_alignParentLeft="true"

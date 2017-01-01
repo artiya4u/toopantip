@@ -9,7 +9,6 @@
     app:contentInsetEnd="0dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -28,6 +27,7 @@
 
         <RelativeLayout
             android:id="@+id/searchBar"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_gravity="top"
@@ -111,7 +111,6 @@
                     android:background="@drawable/searchbar_background"
                     android:paddingLeft="16dp"
                     android:paddingRight="10dp"
-                    android:singleLine="true"
                     android:textSize="@dimen/search_bar_text_size"
                     android:textColor="@color/search_dark"
                     android:selectAllOnFocus="true"

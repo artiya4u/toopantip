@@ -7,7 +7,7 @@
                 android:background="@android:color/transparent"
                 android:descendantFocusability="blocksDescendants">
 
-    <com.duckduckgo.mobile.android.download.AsyncImageView
+    <me.artiya.toopantip.android.download.AsyncImageView
         android:id="@+id/item_icon"
         android:layout_width="@dimen/searchlistview_item_icon_dimen"
         android:layout_height="@dimen/searchlistview_item_icon_dimen"

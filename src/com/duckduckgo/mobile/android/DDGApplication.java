@@ -18,29 +18,8 @@ import com.duckduckgo.mobile.android.util.DDGConstants;
 import com.duckduckgo.mobile.android.util.DDGControlVar;
 import com.duckduckgo.mobile.android.util.PreferencesManager;
 
-import org.acra.ACRA;
-import org.acra.ReportField;
-import org.acra.ReportingInteractionMode;
-import org.acra.annotation.ReportsCrashes;
-
 import java.io.File;
 
-@ReportsCrashes(formKey = "",
-        formUri = "https://collect.duckduckgo.com/collect.js?type=crash",
-        mode = ReportingInteractionMode.DIALOG,
-        customReportContent = {
-                ReportField.APP_VERSION_CODE, ReportField.APP_VERSION_NAME, ReportField.ANDROID_VERSION, ReportField.STACK_TRACE,
-                ReportField.AVAILABLE_MEM_SIZE, ReportField.USER_COMMENT, ReportField.LOGCAT,
-                ReportField.PRODUCT, ReportField.PHONE_MODEL
-        },
-        resToastText = R.string.crash_toast_text, // optional, displayed as soon as the crash occurs, before collecting data which can take a few seconds
-        resNotifTickerText = R.string.crash_notif_ticker_text,
-        resNotifTitle = R.string.crash_notif_title,
-        resNotifText = R.string.crash_notif_text,
-        resDialogText = R.string.crash_dialog_text,
-        resDialogCommentPrompt = R.string.crash_dialog_comment_prompt, // optional. when defined, adds a user text field input with this text resource as a label
-        resDialogOkToast = R.string.crash_dialog_ok_toast // optional. displays a Toast message when the user accepts to send a report.
-)
 public class DDGApplication extends Application {
 
     private static final ImageCache imageCache = new ImageCache(null);
@@ -69,7 +48,6 @@ public class DDGApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ACRA.init(this);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         db = new DdgDB(this);
         fileCache = new FileCache(this.getApplicationContext());

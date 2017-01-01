@@ -3,15 +3,12 @@ package com.duckduckgo.mobile.android.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -24,14 +21,10 @@ import com.duckduckgo.mobile.android.bus.BusProvider;
 import com.duckduckgo.mobile.android.download.AsyncImageView;
 import com.duckduckgo.mobile.android.events.feedEvents.MainFeedItemSelectedEvent;
 import com.duckduckgo.mobile.android.objects.FeedObject;
-import com.duckduckgo.mobile.android.util.DDGConstants;
 import com.duckduckgo.mobile.android.util.DDGControlVar;
-import com.duckduckgo.mobile.android.util.DDGUtils;
 import com.duckduckgo.mobile.android.views.DDGOverflowMenu;
 import com.squareup.picasso.Picasso;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.SortedSet;
@@ -59,7 +52,7 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
         public final FrameLayout frameMenuContainer;
         public final ImageView imageViewMenu;
         public final AsyncImageView imageViewBackground;
-        public final AsyncImageView imageViewFeedIcon; // Bottom Left Icon (Feed Source)
+        public final TextView textViewSummary;
 
         public ViewHolder(View v) {
             super(v);
@@ -69,7 +62,7 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
             this.frameMenuContainer = (FrameLayout) v.findViewById(R.id.feedMenuContainer);
             this.imageViewMenu = (ImageView) v.findViewById(R.id.feedMenuImage);
             this.imageViewBackground = (AsyncImageView) v.findViewById(R.id.feedItemBackground);
-            this.imageViewFeedIcon = (AsyncImageView) v.findViewById(R.id.feedItemSourceIcon);
+            this.textViewSummary = (TextView) v.findViewById(R.id.feedSummaryTextView);
         }
     }
 
@@ -94,45 +87,19 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final FeedObject feed = data.get(position);
-        URL feedUrl = null;
 
         //Download the background image
         if (feed.getImageUrl() != null && !feed.getImageUrl().equals("null")) {
-            Picasso.with(context)
-                    .load(feed.getImageUrl())
-                    .resize(DDGUtils.displayStats.feedItemWidth, DDGUtils.displayStats.feedItemHeight)
-                    .centerCrop()
-                    .placeholder(android.R.color.transparent)
-                    .into(holder.imageViewBackground);
-        }
-
-        holder.imageViewFeedIcon.setType(feed.getType());    // stored source id in imageview
-
-        final View iconParent = (View) holder.imageViewFeedIcon.getParent();//view.findViewById(R.id.feedWrapper);
-        iconParent.post(new Runnable() {
-            public void run() {
-                // Post in the parent's message queue to make sure the parent
-                // lays out its children before we call getHitRect()
-                Rect delegateArea = new Rect();
-                AsyncImageView delegate = holder.imageViewFeedIcon;
-                delegate.getHitRect(delegateArea);
-                delegateArea.top = 0;
-                delegateArea.bottom = iconParent.getBottom();
-                delegateArea.left = 0;
-                // right side limit also considers the space that is available from TextView, without text displayed
-                // in TextView padding area on the left
-                delegateArea.right = holder.textViewTitle.getLeft() + holder.textViewTitle.getPaddingLeft();
-                TouchDelegate expandedArea = new TouchDelegate(delegateArea,
-                        delegate);
-                // give the delegate to an ancestor of the view we're delegating the area to
-                if (View.class.isInstance(delegate.getParent())) {
-                    ((View) delegate.getParent())
-                            .setTouchDelegate(expandedArea);
-                }
+            if (feed.getImageUrl().equals("http://ptcdn.info/pantip/pantip_logo_02.png")) {
+                holder.imageViewBackground.setVisibility(View.GONE);
+            } else {
+                holder.imageViewBackground.setVisibility(View.VISIBLE);
+                Picasso.with(context)
+                        .load(feed.getImageUrl())
+                        .placeholder(android.R.color.transparent)
+                        .into(holder.imageViewBackground);
             }
-
-            ;
-        });
+        }
 
         //Set the Title
         holder.textViewTitle.setText(feed.getTitle());
@@ -157,57 +124,6 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
         if (DDGControlVar.readArticles.contains(feed.getId())) {
             holder.textViewTitle.setTextColor(Color.GRAY);
         }
-
-        if (feed.getFeed() != null && !feed.getFeed().equals("null")) {
-            try {
-                feedUrl = new URL(feed.getFeed());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-
-            if (feedUrl != null) {
-                String host = feedUrl.getHost();
-                if (host.indexOf(".") != host.lastIndexOf(".")) {
-                    //Cut off the beginning, because we don't want/need it
-                    host = host.substring(host.indexOf(".") + 1);
-                }
-
-                Bitmap bitmap = DDGApplication.getImageCache().getBitmapFromCache("DUCKDUCKICO--" + feed.getType(), false);
-                if (bitmap != null) {
-                    holder.imageViewFeedIcon.setBitmap(bitmap);
-                } else {
-                    Picasso.with(context)
-                            .load(DDGConstants.ICON_LOOKUP_URL + host + ".ico")
-                            .placeholder(android.R.color.transparent)
-                            .into(holder.imageViewFeedIcon);
-                }
-            }
-        }
-
-
-        final String sourceType = feed.getType();
-
-        holder.imageViewFeedIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //BusProvider.getInstance().post(new SourceFilterEvent(itemView, sourceType, feed));
-
-                Log.e("aaa", "ddg target source clicked: " + sourceType);
-                if (DDGControlVar.targetSource != null) {
-                    DDGControlVar.targetSource = null;
-                    //resetFilterSource();
-                    cancelSourceFilter();
-                    //BusProvider.getInstance().post(new FeedCancelSourceFilterEvent());
-                } else {
-                    DDGControlVar.targetSource = sourceType;
-                    DDGControlVar.hasUpdatedFeed = false;
-                    Log.e("aaa", "ddg target source: " + DDGControlVar.targetSource);
-                    //BusProvider.getInstance().post(new SourceFilterEvent(itemView, sourceType, feed));
-                    //filterSource(sourceType);
-                    filterSource(sourceType);
-                }
-            }
-        });
 
         holder.frameMenuContainer.setOnClickListener(new View.OnClickListener() {
             @Override
