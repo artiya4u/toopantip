@@ -1,6 +1,7 @@
 package com.duckduckgo.mobile.android.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -88,7 +89,7 @@ public class MainFeedAdapter extends ArrayAdapter<FeedObject>/* implements Filte
 
             //Download the background image
             if (feed.getImageUrl() != null && !feed.getImageUrl().equals("null")) {
-                if (feed.getImageUrl().equals("http://ptcdn.info/pantip/pantip_logo_02.png")) {
+                if (feed.getImageUrl().endsWith("pantip_logo_02.png")) {
                     holder.imageViewBackground.setVisibility(View.GONE);
                 } else {
                     holder.imageViewBackground.setVisibility(View.VISIBLE);
@@ -99,11 +100,10 @@ public class MainFeedAdapter extends ArrayAdapter<FeedObject>/* implements Filte
                 }
             }
 
-            holder.textViewTitle.setText(feed.getTitle());
-            holder.textViewSummary.setText(feed.getDescription());
-
             //Set the Title
             holder.textViewTitle.setText(feed.getTitle());
+            holder.textViewSummary.setText(feed.getDescription());
+            Log.d("DES", feed.getDescription());
 
             // FIXME : it'd be good to reset color to default color for textview in layout XML
             holder.textViewTitle.setTextColor(context.getResources().getColor(R.color.feed_title));

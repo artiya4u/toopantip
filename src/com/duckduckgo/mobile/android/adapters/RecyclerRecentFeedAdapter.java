@@ -90,7 +90,7 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
 
         //Download the background image
         if (feed.getImageUrl() != null && !feed.getImageUrl().equals("null")) {
-            if (feed.getImageUrl().equals("http://ptcdn.info/pantip/pantip_logo_02.png")) {
+            if (feed.getImageUrl().endsWith("pantip_logo_02.png")) {
                 holder.imageViewBackground.setVisibility(View.GONE);
             } else {
                 holder.imageViewBackground.setVisibility(View.VISIBLE);
@@ -103,6 +103,7 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
 
         //Set the Title
         holder.textViewTitle.setText(feed.getTitle());
+        holder.textViewSummary.setText(feed.getDescription());
 
         //Set the Category
         holder.textViewCategory.setText(feed.getCategory().toUpperCase());

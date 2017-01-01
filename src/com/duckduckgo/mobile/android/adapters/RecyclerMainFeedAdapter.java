@@ -111,7 +111,7 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
 
             //Download the background image
             if (feed.getImageUrl() != null && !feed.getImageUrl().equals("null")) {
-                if (feed.getImageUrl().equals("http://ptcdn.info/pantip/pantip_logo_02.png")) {
+                if (feed.getImageUrl().endsWith("pantip_logo_02.png")) {
                     holder.imageViewBackground.setVisibility(View.GONE);
                 } else {
                     holder.imageViewBackground.setVisibility(View.VISIBLE);
@@ -123,14 +123,8 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
             }
 
             //Set the Title
-            //holder.textViewTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, DDGControlVar.mainTextSize);
             holder.textViewTitle.setText(feed.getTitle());
-            /*
-            String feedId = feed.getId();
-
-			if(DDGControlVar.readArticles.contains(feedId)){
-				holder.textViewTitle.setTextColor(Color.GRAY);
-			}*/
+            holder.textViewSummary.setText(feed.getDescription());
 
             // FIXME : it'd be good to reset color to default color for textview in layout XML
             holder.textViewTitle.setTextColor(context.getResources().getColor(R.color.feed_title));

@@ -78,7 +78,7 @@ public class FavoriteFeedCursorAdapter extends CursorAdapter {
 
         //Download the background image
         if (imageUrl != null && !imageUrl.equals("null")) {
-            if (imageUrl.equals("http://ptcdn.info/pantip/pantip_logo_02.png")) {
+            if (imageUrl.endsWith("pantip_logo_02.png")) {
                 imageViewBackground.setVisibility(View.GONE);
             } else {
                 imageViewBackground.setVisibility(View.VISIBLE);
@@ -109,7 +109,6 @@ public class FavoriteFeedCursorAdapter extends CursorAdapter {
 
         //Set the Title
         textViewTitle.setText(summary);
-
         textViewSummary.setText(summary);
         Log.e("LOG", summary);
 

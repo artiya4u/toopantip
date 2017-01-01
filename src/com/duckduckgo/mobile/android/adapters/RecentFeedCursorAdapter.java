@@ -62,7 +62,7 @@ public class RecentFeedCursorAdapter extends CursorAdapter {
 
         //Download the background image
         if (imageUrl != null && !imageUrl.equals("null")) {
-            if (imageUrl.equals("http://ptcdn.info/pantip/pantip_logo_02.png")) {
+            if (imageUrl.endsWith("pantip_logo_02.png")) {
                 imageViewBackground.setVisibility(View.GONE);
             } else {
                 imageViewBackground.setVisibility(View.VISIBLE);
@@ -92,7 +92,6 @@ public class RecentFeedCursorAdapter extends CursorAdapter {
 
         //Set the Title
         textViewTitle.setText(title);
-
         textViewSummary.setText(summary);
 
         //Set the Category
