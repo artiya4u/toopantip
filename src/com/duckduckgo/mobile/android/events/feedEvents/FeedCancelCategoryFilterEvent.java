@@ -4,5 +4,6 @@ import com.duckduckgo.mobile.android.events.Event;
 
 public class FeedCancelCategoryFilterEvent extends Event {
 
-    public FeedCancelCategoryFilterEvent() {}
+    public FeedCancelCategoryFilterEvent() {
+    }
 }

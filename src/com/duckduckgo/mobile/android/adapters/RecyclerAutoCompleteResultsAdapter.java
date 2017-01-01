@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -81,8 +80,8 @@ public class RecyclerAutoCompleteResultsAdapter extends RecyclerView.Adapter<Rec
             stringSuggestion = new StringBuilder();
 
             boolean keepCopying = true;
-            for(int i=0; i<suggestion.getPhrase().length(); i++) {
-                if(keepCopying && i<userInput.length() && userInput.charAt(i)==suggestion.getPhrase().charAt(i)) {
+            for (int i = 0; i < suggestion.getPhrase().length(); i++) {
+                if (keepCopying && i < userInput.length() && userInput.charAt(i) == suggestion.getPhrase().charAt(i)) {
                     stringInput.append(userInput.charAt(i));
                 } else {
                     keepCopying = false;
@@ -99,7 +98,7 @@ public class RecyclerAutoCompleteResultsAdapter extends RecyclerView.Adapter<Rec
             holder.result.append(word);
 
             String snippet = suggestion.getSnippet();
-            if(snippet!=null && snippet.length()>0) {
+            if (snippet != null && snippet.length() > 0) {
                 holder.detail.setText(suggestion.getSnippet());
                 holder.detail.setVisibility(View.VISIBLE);
             } else {
@@ -112,7 +111,7 @@ public class RecyclerAutoCompleteResultsAdapter extends RecyclerView.Adapter<Rec
                 @Override
                 public void onClick(View v) {
                     String phrase = suggestion.getPhrase();
-                    if(phrase!=null) {
+                    if (phrase != null) {
                         BusProvider.getInstance().post(new SuggestionPasteEvent(suggestion.getPhrase()));
                     }
                 }
@@ -120,7 +119,7 @@ public class RecyclerAutoCompleteResultsAdapter extends RecyclerView.Adapter<Rec
 
             //Drawable acDrawable = suggestion.getDrawable();
             String imageUrl = suggestion.getImageUrl();
-            if(imageUrl != null && imageUrl.length() != 0){// && !imageUrl.contains("search-suggestions_default.png")) {
+            if (imageUrl != null && imageUrl.length() != 0) {// && !imageUrl.contains("search-suggestions_default.png")) {
                 Log.e("aaa", "image url: " + imageUrl);
                 roundTransform.setRadius(holder.icon.getCornerRadius());
                 //scaleTransform.setTarget(holder.icon, 0.6);
@@ -132,8 +131,7 @@ public class RecyclerAutoCompleteResultsAdapter extends RecyclerView.Adapter<Rec
                         .transform(scaleTransform)
                         .transform(roundTransform)
                         .into(holder.icon);
-            }
-            else {
+            } else {
                 holder.icon.setImageDrawable(null);
             }
         }
@@ -162,6 +160,7 @@ public class RecyclerAutoCompleteResultsAdapter extends RecyclerView.Adapter<Rec
         final TextView detail;
         final AsyncImageView icon;
         final ImageButton plus;
+
         public ViewHolder(View v) {
             super(v);
             this.result = (TextView) v.findViewById(R.id.item_text);
@@ -185,11 +184,11 @@ public class RecyclerAutoCompleteResultsAdapter extends RecyclerView.Adapter<Rec
                     //TODO: Check if this constraint is already in the cache
                     JSONArray json = getJSONResultForConstraint(constraint);
                     // also search in apps
-                    if(DDGControlVar.includeAppsInSearch) {
+                    if (DDGControlVar.includeAppsInSearch) {
                         //Context context = constraint;
                         ArrayList<AppShortInfo> appResults = DDGApplication.getDB().selectApps(constraint.toString());
-                        if(appResults != null) {
-                            for(AppShortInfo appInfo : appResults) {
+                        if (appResults != null) {
+                            for (AppShortInfo appInfo : appResults) {
                                 SuggestObject item = new SuggestObject(appInfo.name, appInfo.packageName, context);
                                 if (item != null) {
                                     newResults.add(item);
@@ -223,7 +222,7 @@ public class RecyclerAutoCompleteResultsAdapter extends RecyclerView.Adapter<Rec
                 data.clear();
                 if (results != null && results.count > 0) {
                     @SuppressWarnings("unchecked")
-                    ArrayList<SuggestObject> newResults = (ArrayList<SuggestObject>)results.values;
+                    ArrayList<SuggestObject> newResults = (ArrayList<SuggestObject>) results.values;
                     data.addAll(newResults);
                     notifyDataSetChanged();
                 } else {

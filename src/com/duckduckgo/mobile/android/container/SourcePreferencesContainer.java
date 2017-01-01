@@ -5,7 +5,7 @@ import com.duckduckgo.mobile.android.tasks.SourcesTask;
 
 public class SourcePreferencesContainer {
 
-	public SourcesTask sourcesTask = null;
-	public SourcesAdapter sourcesAdapter = null;
+    public SourcesTask sourcesTask = null;
+    public SourcesAdapter sourcesAdapter = null;
 
 }

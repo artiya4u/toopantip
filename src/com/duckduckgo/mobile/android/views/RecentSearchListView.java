@@ -30,13 +30,13 @@ public class RecentSearchListView extends ListView implements AdapterView.OnItem
         HistoryObject obj = null;
 
         Object itemClicked = ((Adapter) adapter).getItem(position);
-        if(itemClicked instanceof Cursor) {
+        if (itemClicked instanceof Cursor) {
             c = (Cursor) itemClicked;
             obj = new HistoryObject(c);
         }
 
         if (obj != null) {
-            Log.e("aaa", "object: "+obj.toString());
+            Log.e("aaa", "object: " + obj.toString());
             BusProvider.getInstance().post(new HistoryItemSelectedEvent(obj));
         }
     }
@@ -50,13 +50,13 @@ public class RecentSearchListView extends ListView implements AdapterView.OnItem
         HistoryObject obj = null;
 
         Object itemClicked = ((Adapter) adapter).getItem(position);
-        if(itemClicked instanceof Cursor) {
+        if (itemClicked instanceof Cursor) {
             c = (Cursor) itemClicked;
             obj = new HistoryObject(c);
         }
 
         if (obj != null) {
-            Log.e("aaa", "history object: "+obj.toString());/*
+            Log.e("aaa", "history object: " + obj.toString());/*
             Menu menu = new MenuBuilder(getContext());
             ((Activity)getContext()).getMenuInflater().inflate(R.menu.feed, menu);
             if(DDGApplication.getDB().isSavedSearch(obj.getData())) {

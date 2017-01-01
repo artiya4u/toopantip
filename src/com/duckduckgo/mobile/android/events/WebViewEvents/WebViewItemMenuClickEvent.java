@@ -2,7 +2,6 @@ package com.duckduckgo.mobile.android.events.WebViewEvents;
 
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 
 import com.duckduckgo.mobile.android.objects.FeedObject;
 

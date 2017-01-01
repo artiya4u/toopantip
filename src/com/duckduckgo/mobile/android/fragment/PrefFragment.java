@@ -96,7 +96,7 @@ public class PrefFragment extends PreferenceFragment implements SharedPreference
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getListView().setPadding(0, 0, 0, getListView().getPaddingBottom());
         }
 
@@ -109,24 +109,24 @@ public class PrefFragment extends PreferenceFragment implements SharedPreference
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-        if(preference==sourcesPref) {
+        if (preference == sourcesPref) {
             BusProvider.getInstance().post(new DisplayScreenEvent(SCREEN.SCR_SOURCES, false));
             return true;
-        } else if(preference==clearHistoryPref) {
+        } else if (preference == clearHistoryPref) {
             ConfirmDialog dialog = ConfirmDialog.newInstance(getResources().getString(R.string.Confirm), getResources().getString(R.string.ConfirmClearHistory), DDGConstants.CONFIRM_CLEAR_HISTORY);
             dialog.show(getFragmentManager(), ConfirmDialog.TAG);
             return true;
-        } else if(preference==clearCookiesPref) {
+        } else if (preference == clearCookiesPref) {
             ConfirmDialog dialog = ConfirmDialog.newInstance(getResources().getString(R.string.Confirm), getResources().getString(R.string.ConfirmClearCookies), DDGConstants.CONFIRM_CLEAR_COOKIES);
             dialog.show(getFragmentManager(), ConfirmDialog.TAG);
             return true;
-        } else if(preference==clearWebCachePref) {
+        } else if (preference == clearWebCachePref) {
             ConfirmDialog dialog = ConfirmDialog.newInstance(getResources().getString(R.string.Confirm), getResources().getString(R.string.ConfirmClearCacheAndCookies), DDGConstants.CONFIRM_CLEAR_WEB_CACHE);
             dialog.show(getFragmentManager(), ConfirmDialog.TAG);
-        } else if(preference==aboutPref) {
+        } else if (preference == aboutPref) {
             BusProvider.getInstance().post(new DisplayScreenEvent(SCREEN.SCR_ABOUT, false));
             return true;
-        } else if(preference==sendFeedbackPref) {
+        } else if (preference == sendFeedbackPref) {
             Intent intent = DDGUtils.newEmailIntent(activity.getResources().getString(R.string.FeedbackTo),
                     getActivity().getResources().getString(R.string.FeedbackSubject), DDGUtils.getBuildInfo(activity), "");
             startActivity(Intent.createChooser(intent, getResources().getString(R.string.select_application)));
@@ -137,10 +137,10 @@ public class PrefFragment extends PreferenceFragment implements SharedPreference
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if(preference instanceof ListPreference && newValue instanceof String) {
+        if (preference instanceof ListPreference && newValue instanceof String) {
             ListPreference listPref = (ListPreference) preference;
-            for(int i=0; i<listPref.getEntries().length; i++) {
-                if(newValue.equals(listPref.getEntryValues()[i])) {
+            for (int i = 0; i < listPref.getEntries().length; i++) {
+                if (newValue.equals(listPref.getEntryValues()[i])) {
                     listPref.setSummary(listPref.getEntries()[i]);
                 }
             }
@@ -154,26 +154,25 @@ public class PrefFragment extends PreferenceFragment implements SharedPreference
 
     private void whenCheckingOrbotStatusStartsOrbotAndSetsProxy() {
         Preference checkOrbotPreference = findPreference("checkOrbotStatus");
-        if(activity!=null && !activity.isFinishing())
-        checkOrbotPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                //if(!TorIntegrationProvider.getInstance(activity).isOrbotRunningAccordingToSettings()){
-                if(!DDGControlVar.mDuckDuckGoContainer.torIntegration.isOrbotRunningAccordingToSettings()){
-                    //TorIntegrationProvider.getInstance(activity).prepareTorSettings();
-                    DDGControlVar.mDuckDuckGoContainer.torIntegration.prepareTorSettings();
+        if (activity != null && !activity.isFinishing())
+            checkOrbotPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    //if(!TorIntegrationProvider.getInstance(activity).isOrbotRunningAccordingToSettings()){
+                    if (!DDGControlVar.mDuckDuckGoContainer.torIntegration.isOrbotRunningAccordingToSettings()) {
+                        //TorIntegrationProvider.getInstance(activity).prepareTorSettings();
+                        DDGControlVar.mDuckDuckGoContainer.torIntegration.prepareTorSettings();
+                    } else {
+                        ((DuckDuckGo) activity).searchOrGoToUrl(getString(R.string.OrbotCheckSite));
+                    }
+                    return true;
                 }
-                else{
-                    ((DuckDuckGo)activity).searchOrGoToUrl(getString(R.string.OrbotCheckSite));
-                }
-                return true;
-            }
-        });
+            });
     }
 
     private void whenChangingTorChecksForOrbot() {
         Preference enableTorPreference = findPreference("enableTor");
-        if(activity!=null && !activity.isFinishing()) {
+        if (activity != null && !activity.isFinishing()) {
             //if (!TorIntegrationProvider.getInstance(activity).isTorSupported()) {
             if (!DDGControlVar.mDuckDuckGoContainer.torIntegration.isTorSupported()) {
                 setTorNotSupportedInfo(enableTorPreference);
@@ -214,7 +213,8 @@ public class PrefFragment extends PreferenceFragment implements SharedPreference
             return dialog;
         }
 
-        public ConfirmDialog() {}
+        public ConfirmDialog() {
+        }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {

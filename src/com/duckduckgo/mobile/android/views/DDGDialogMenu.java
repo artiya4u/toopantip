@@ -46,11 +46,10 @@ public class DDGDialogMenu extends DialogFragment {
         menuListView = (ListView) fragmentView.findViewById(R.id.menu_listview);
         menuListView.setVisibility(View.VISIBLE);
         menuAdapter = new DDGMenuAdapter(getActivity(), R.layout.item_overflow_menu, menuItems);
-        Log.e("aaa", "menu adapter count: "+menuAdapter.getCount());
+        Log.e("aaa", "menu adapter count: " + menuAdapter.getCount());
         menuListView.setAdapter(menuAdapter);
 
         builder.setView(fragmentView);
-
 
 
         //builder.setTitle("test");
@@ -64,11 +63,11 @@ public class DDGDialogMenu extends DialogFragment {
         });*/
 
         boolean test = items == null;
-        Log.e("aaa", "items==null: "+test);
-        if(!test) {
-            Log.e("aaa", "items length: "+items.length);
-            for(int i=0; i<items.length; i++) {
-                Log.e("aaa", "items["+i+"]: "+items[i]);
+        Log.e("aaa", "items==null: " + test);
+        if (!test) {
+            Log.e("aaa", "items length: " + items.length);
+            for (int i = 0; i < items.length; i++) {
+                Log.e("aaa", "items[" + i + "]: " + items[i]);
             }
         }
 
@@ -112,14 +111,14 @@ public class DDGDialogMenu extends DialogFragment {
     public void setMenu(Menu menu) {
         //menuListView.setVisibility(View.VISIBLE);
         menuItems = new ArrayList<MenuItem>();
-        for(int i=0; i<menu.size(); i++) {
-            if(menu.getItem(i).isVisible()) {
+        for (int i = 0; i < menu.size(); i++) {
+            if (menu.getItem(i).isVisible()) {
                 menuItems.add(menu.getItem(i));
                 //items[i] = menu.getItem(i).getTitle();
             }
         }
         items = new String[menuItems.size()];
-        for(int i=0; i<menuItems.size(); i++) {
+        for (int i = 0; i < menuItems.size(); i++) {
             items[i] = menuItems.get(i).toString();
         }
         //adapter = new ArrayAdapter(context, R.layout.temp_menuitem, R.id.text1, menuItems);
@@ -153,7 +152,7 @@ public class DDGDialogMenu extends DialogFragment {
             View root = convertView;
             Holder holder = null;
 
-            if(root==null) {
+            if (root == null) {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 root = inflater.inflate(layoutResId, parent, false);
 

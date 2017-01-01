@@ -20,10 +20,12 @@ public class Item {
         //this.icon = icon;
         this.type = type;
     }
+
     @Override
     public String toString() {
         return text;
     }
+
     /*
     public static enum ItemType {
     	SHARE, SAVE, EXTERNAL, UNSAVE, REFRESH, DELETE, READABILITY_ON, READABILITY_OFF

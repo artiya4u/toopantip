@@ -114,7 +114,7 @@ public class SourcesFragment extends Fragment implements SourcesTask.SourcesList
         //Otherwise, we can try again
         if (sourcesTask != null) {
             sourcesTask = new SourcesTask(getActivity(), this);
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 sourcesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             } else {
                 sourcesTask.execute();
@@ -131,7 +131,7 @@ public class SourcesFragment extends Fragment implements SourcesTask.SourcesList
             @Override
             public void run() {
                 sourcesTask = new SourcesTask(getActivity(), SourcesFragment.this);
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                     sourcesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 } else {
                     sourcesTask.execute();

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -22,8 +21,8 @@ public class AsyncImageView extends ImageView {
     public String type = null;
 
     /**
-       * The corner radius of the view (in pixel).
-       */
+     * The corner radius of the view (in pixel).
+     */
     private float cornerRadius = 0;
 
     private boolean usePicasso = true;
@@ -34,10 +33,10 @@ public class AsyncImageView extends ImageView {
      * Calls super and performs further initialization of the instance from the xml attributes passed to it.
      *
      * @param context
-     * @param attr XML attribute set
+     * @param attr    XML attribute set
      */
     public AsyncImageView(Context context, AttributeSet attr) {
-        super (context, attr);
+        super(context, attr);
         getXMLAttribute(context, attr);
     }
 
@@ -49,7 +48,7 @@ public class AsyncImageView extends ImageView {
      * @param defStyle
      */
     public AsyncImageView(Context context, AttributeSet attr, int defStyle) {
-        super (context, attr, defStyle);
+        super(context, attr, defStyle);
         getXMLAttribute(context, attr);
     }
 
@@ -64,6 +63,7 @@ public class AsyncImageView extends ImageView {
 
     /**
      * Get parameters in xml layout.
+     *
      * @param context
      * @param attrs
      */
@@ -78,36 +78,37 @@ public class AsyncImageView extends ImageView {
 
     /**
      * Set corner radius.
+     *
      * @param radius Corder radius in pixel.
      */
     public void setCornerRadius(int radius) {
         this.cornerRadius = radius;
-      }
+    }
 
     public float getCornerRadius() {
-            return this.cornerRadius;
-          }
+        return this.cornerRadius;
+    }
 
 
     public void setBitmap(Bitmap bitmap) {
-        if(bitmap == null)
+        if (bitmap == null)
             return;
 
         setImageBitmap(bitmap);
     }
 
-    public void setType(String type){
+    public void setType(String type) {
         this.type = type;
     }
 
-    public String getType(){
+    public String getType() {
         return type;
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if(usePicasso) {
+        if (usePicasso) {
             Picasso.with(getContext()).cancelRequest(this);
         }
     }
@@ -116,7 +117,7 @@ public class AsyncImageView extends ImageView {
     protected void onVisibilityChanged(View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
 
-        if(visibility != View.VISIBLE && usePicasso) {
+        if (visibility != View.VISIBLE && usePicasso) {
             Picasso.with(getContext()).cancelRequest(this);
         }
     }

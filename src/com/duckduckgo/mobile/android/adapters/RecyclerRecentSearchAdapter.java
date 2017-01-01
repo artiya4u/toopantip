@@ -71,7 +71,7 @@ public class RecyclerRecentSearchAdapter extends RecyclerView.Adapter<RecyclerRe
             public boolean onLongClick(View v) {
                 //BusProvider.getInstance().post(new SavedSearchItemLongClickEvent(data));
                 BusProvider.getInstance().post(new HistoryItemLongClickEvent(new HistoryObject(cursor)));
-                Log.e("aaa", "recent search on long click: "+data);
+                Log.e("aaa", "recent search on long click: " + data);
                 return true;
             }
         });
@@ -84,18 +84,18 @@ public class RecyclerRecentSearchAdapter extends RecyclerView.Adapter<RecyclerRe
 
     public void changeCursor(Cursor cursor) {
         Cursor oldCursor = swapCursor(cursor);
-        if(oldCursor!=null) {
+        if (oldCursor != null) {
             oldCursor.close();
         }
     }
 
     public Cursor swapCursor(Cursor newCursor) {
-        if(cursor==newCursor) {
+        if (cursor == newCursor) {
             return null;
         }
         Cursor oldCursor = cursor;
         cursor = newCursor;
-        if(cursor!=null) {
+        if (cursor != null) {
             notifyDataSetChanged();
         }
         return oldCursor;
@@ -103,11 +103,11 @@ public class RecyclerRecentSearchAdapter extends RecyclerView.Adapter<RecyclerRe
 
     public String capitalizeWords(String input) {
         StringBuilder out = new StringBuilder();
-        for(int i=0; i<input.length(); i++) {
-            if(i==0 || (i>0 && input.charAt(i-1)==' ')) {
-                out.append(input.substring(i, i+1).toUpperCase());
+        for (int i = 0; i < input.length(); i++) {
+            if (i == 0 || (i > 0 && input.charAt(i - 1) == ' ')) {
+                out.append(input.substring(i, i + 1).toUpperCase());
             } else {
-                out.append(input.substring(i, i+1));
+                out.append(input.substring(i, i + 1));
             }
         }
         return out.toString();

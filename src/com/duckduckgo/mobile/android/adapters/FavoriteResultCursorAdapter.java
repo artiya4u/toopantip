@@ -1,4 +1,5 @@
 package com.duckduckgo.mobile.android.adapters;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 import com.duckduckgo.mobile.android.R;
 
 public class FavoriteResultCursorAdapter extends CursorAdapter {
-	
+
     public FavoriteResultCursorAdapter(Context context, Cursor c) {
         super(context, c);
     }
@@ -31,13 +32,13 @@ public class FavoriteResultCursorAdapter extends CursorAdapter {
         // here we are setting our data
         // that means, take the data from the cursor and put it in views
 
-    	final String data = cursor.getString(cursor.getColumnIndex("title"));
+        final String data = cursor.getString(cursor.getColumnIndex("title"));
         TextView title = (TextView) view.findViewById(R.id.item_text);
-        if(title!=null ) {
+        if (title != null) {
             title.setText(capitalizeWords(data));
         }
         ImageView icon = (ImageView) view.findViewById(R.id.item_icon);
-        if(icon!=null) {
+        if (icon != null) {
             icon.setImageDrawable(context.getResources().getDrawable(R.drawable.favorite));
         }
 
@@ -45,11 +46,11 @@ public class FavoriteResultCursorAdapter extends CursorAdapter {
 
     public String capitalizeWords(String input) {
         StringBuilder out = new StringBuilder();
-        for(int i=0; i<input.length(); i++) {
-            if(i==0 || (i>0 && input.charAt(i-1)==' ')) {
-                out.append(input.substring(i, i+1).toUpperCase());
+        for (int i = 0; i < input.length(); i++) {
+            if (i == 0 || (i > 0 && input.charAt(i - 1) == ' ')) {
+                out.append(input.substring(i, i + 1).toUpperCase());
             } else {
-                out.append(input.substring(i, i+1));
+                out.append(input.substring(i, i + 1));
             }
         }
         return out.toString();

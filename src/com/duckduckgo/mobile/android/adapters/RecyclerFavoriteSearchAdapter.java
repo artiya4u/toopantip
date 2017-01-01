@@ -59,7 +59,7 @@ public class RecyclerFavoriteSearchAdapter extends RecyclerView.Adapter<Recycler
             @Override
             public void onClick(View v) {
                 BusProvider.getInstance().post(new SavedSearchItemSelectedEvent(data));
-                Log.e("aaa", "favorite search on click: "+data);
+                Log.e("aaa", "favorite search on click: " + data);
             }
         });
 
@@ -67,7 +67,7 @@ public class RecyclerFavoriteSearchAdapter extends RecyclerView.Adapter<Recycler
             @Override
             public boolean onLongClick(View v) {
                 //BusProvider.getInstance().post(new SavedSearchItemLongClickEvent(data));
-                Log.e("aaa", "favorite search on long click: "+data);
+                Log.e("aaa", "favorite search on long click: " + data);
                 return true;
             }
         });
@@ -80,18 +80,18 @@ public class RecyclerFavoriteSearchAdapter extends RecyclerView.Adapter<Recycler
 
     public void changeCursor(Cursor cursor) {
         Cursor oldCursor = swapCursor(cursor);
-        if(oldCursor!=null) {
+        if (oldCursor != null) {
             oldCursor.close();
         }
     }
 
     public Cursor swapCursor(Cursor newCursor) {
-        if(cursor==newCursor) {
+        if (cursor == newCursor) {
             return null;
         }
         Cursor oldCursor = cursor;
         cursor = newCursor;
-        if(cursor!=null) {
+        if (cursor != null) {
             notifyDataSetChanged();
         }
         return oldCursor;
@@ -99,11 +99,11 @@ public class RecyclerFavoriteSearchAdapter extends RecyclerView.Adapter<Recycler
 
     public String capitalizeWords(String input) {
         StringBuilder out = new StringBuilder();
-        for(int i=0; i<input.length(); i++) {
-            if(i==0 || (i>0 && input.charAt(i-1)==' ')) {
-                out.append(input.substring(i, i+1).toUpperCase());
+        for (int i = 0; i < input.length(); i++) {
+            if (i == 0 || (i > 0 && input.charAt(i - 1) == ' ')) {
+                out.append(input.substring(i, i + 1).toUpperCase());
             } else {
-                out.append(input.substring(i, i+1));
+                out.append(input.substring(i, i + 1));
             }
         }
         return out.toString();

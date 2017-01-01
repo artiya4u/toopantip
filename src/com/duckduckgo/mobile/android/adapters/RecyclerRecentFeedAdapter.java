@@ -80,7 +80,7 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         menu = new MenuBuilder(context);
-        ((Activity)context).getMenuInflater().inflate(R.menu.feed, menu);
+        ((Activity) context).getMenuInflater().inflate(R.menu.feed, menu);
         feedMenu = new DDGOverflowMenu(context);
     }
 
@@ -106,7 +106,7 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
                     .into(holder.imageViewBackground);
         }
 
-        holder.imageViewFeedIcon.setType(feed.getType());	// stored source id in imageview
+        holder.imageViewFeedIcon.setType(feed.getType());    // stored source id in imageview
 
         final View iconParent = (View) holder.imageViewFeedIcon.getParent();//view.findViewById(R.id.feedWrapper);
         iconParent.post(new Runnable() {
@@ -129,7 +129,9 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
                     ((View) delegate.getParent())
                             .setTouchDelegate(expandedArea);
                 }
-            };
+            }
+
+            ;
         });
 
         //Set the Title
@@ -140,8 +142,8 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
         holder.frameCategoryContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(DDGControlVar.targetCategory!=null) {
-                    DDGControlVar.targetCategory=null;
+                if (DDGControlVar.targetCategory != null) {
+                    DDGControlVar.targetCategory = null;
                     //resetFilterCategory();
                     cancelCategoryFilter();
                     //BusProvider.getInstance().post(new FeedCancelCategoryFilterEvent());
@@ -152,7 +154,7 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
             }
         });
 
-        if(DDGControlVar.readArticles.contains(feed.getId())){
+        if (DDGControlVar.readArticles.contains(feed.getId())) {
             holder.textViewTitle.setTextColor(Color.GRAY);
         }
 
@@ -167,14 +169,13 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
                 String host = feedUrl.getHost();
                 if (host.indexOf(".") != host.lastIndexOf(".")) {
                     //Cut off the beginning, because we don't want/need it
-                    host = host.substring(host.indexOf(".")+1);
+                    host = host.substring(host.indexOf(".") + 1);
                 }
 
                 Bitmap bitmap = DDGApplication.getImageCache().getBitmapFromCache("DUCKDUCKICO--" + feed.getType(), false);
-                if(bitmap != null){
+                if (bitmap != null) {
                     holder.imageViewFeedIcon.setBitmap(bitmap);
-                }
-                else {
+                } else {
                     Picasso.with(context)
                             .load(DDGConstants.ICON_LOOKUP_URL + host + ".ico")
                             .placeholder(android.R.color.transparent)
@@ -184,8 +185,6 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
         }
 
 
-
-
         final String sourceType = feed.getType();
 
         holder.imageViewFeedIcon.setOnClickListener(new View.OnClickListener() {
@@ -193,16 +192,16 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
             public void onClick(View v) {
                 //BusProvider.getInstance().post(new SourceFilterEvent(itemView, sourceType, feed));
 
-                Log.e("aaa", "ddg target source clicked: "+sourceType);
-                if(DDGControlVar.targetSource!=null) {
-                    DDGControlVar.targetSource=null;
+                Log.e("aaa", "ddg target source clicked: " + sourceType);
+                if (DDGControlVar.targetSource != null) {
+                    DDGControlVar.targetSource = null;
                     //resetFilterSource();
                     cancelSourceFilter();
                     //BusProvider.getInstance().post(new FeedCancelSourceFilterEvent());
                 } else {
                     DDGControlVar.targetSource = sourceType;
                     DDGControlVar.hasUpdatedFeed = false;
-                    Log.e("aaa", "ddg target source: "+DDGControlVar.targetSource);
+                    Log.e("aaa", "ddg target source: " + DDGControlVar.targetSource);
                     //BusProvider.getInstance().post(new SourceFilterEvent(itemView, sourceType, feed));
                     //filterSource(sourceType);
                     filterSource(sourceType);
@@ -241,11 +240,11 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
     }
 
     private void showMenu(View anchor, FeedObject feed) {
-        if(feedMenu==null) {
+        if (feedMenu == null) {
             feedMenu = new DDGOverflowMenu(context);
         }
-        if(!feedMenu.isShowing()) {
-            if(DDGApplication.getDB().isSaved(feed.getId())) {
+        if (!feedMenu.isShowing()) {
+            if (DDGApplication.getDB().isSaved(feed.getId())) {
                 menu.findItem(R.id.action_add_favorite).setVisible(false);
                 menu.findItem(R.id.action_remove_favorite).setVisible(true);
             } else {
@@ -263,9 +262,9 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
     public void resetFilterCategory() {
         //Log.e("aaa", "inside reset filter");
         //for(HashMap.Entry<Integer, FeedObject> entry : filteredCategory.entrySet()) {
-            //Log.e("aaa", "key: "+entry.getKey()+" - value: "+entry.getValue().getTitle());
-            //filteredData.add(entry.getKey(), entry.getValue());
-            //notifyItemInserted(entry.getKey());
+        //Log.e("aaa", "key: "+entry.getKey()+" - value: "+entry.getValue().getTitle());
+        //filteredData.add(entry.getKey(), entry.getValue());
+        //notifyItemInserted(entry.getKey());
         //}
 //        SortedSet<Integer> keys = new TreeSet<Integer>(filteredCategory.keySet());
 //        for(Integer key : keys) {
@@ -275,7 +274,7 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
 //                filteredData.add(insertPosition, filteredCategory.get(key));
 //                notifyItemInserted(insertPosition);
 //            }
- //       }
+        //       }
 //        filteredCategory.clear();
 /*
         Log.e("aaa", "reset filter category, filtered data: "+filteredData.size()+" - data: "+data.size());
@@ -289,8 +288,8 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
 //        Log.e("aaa", "hash map, total size: "+filteredCategory.size());/*
 //        for(HashMap.Entry<Integer, FeedObject> entry : filteredSource.entrySet()) {
 //            Log.e("aaa", "should add key: "+entry.getKey()+" - value: "+entry.getValue().getTitle());
-            //filteredData.add(entry.getKey(), entry.getValue());
-            //notifyItemInserted(entry.getKey());
+        //filteredData.add(entry.getKey(), entry.getValue());
+        //notifyItemInserted(entry.getKey());
 //        }*/
 //        SortedSet<Integer> keys = new TreeSet<Integer>(filteredSource.keySet());
 //        for(Integer key : keys) {
@@ -344,10 +343,10 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
 
     private void cancelSourceFilter() {
         SortedSet<Integer> keys = new TreeSet<Integer>(filterData.keySet());
-        for(Integer key : keys) {
+        for (Integer key : keys) {
             FeedObject feed = filterData.get(key);
             boolean removeItem = false;
-            if(!data.contains(feed) && (DDGControlVar.targetCategory==null || DDGControlVar.targetCategory.equals(feed.getType()))) {
+            if (!data.contains(feed) && (DDGControlVar.targetCategory == null || DDGControlVar.targetCategory.equals(feed.getType()))) {
                 int position = key < data.size() ? key : data.size();
                 data.add(position, feed);
                 notifyItemInserted(position);
@@ -362,15 +361,15 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
     }
 
     private void filterSource(String source) {
-        int i = data.size()-1;
+        int i = data.size() - 1;
         int size = i;
-        for(; i>=0; i--) {
+        for (; i >= 0; i--) {
             int key = i;
-            if(filterData.containsKey(i)) {
+            if (filterData.containsKey(i)) {
                 key = size;
             }
-            if(!data.get(i).getType().equals(source)) {
-                if(!filterData.containsValue(data.get(i))) {
+            if (!data.get(i).getType().equals(source)) {
+                if (!filterData.containsValue(data.get(i))) {
                     filterData.put(key, data.get(i));
                 }
                 data.remove(i);
@@ -380,15 +379,15 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
     }
 
     private void cancelCategoryFilter() {
-        for(HashMap.Entry<Integer, FeedObject> entry : filterData.entrySet()) {
-            Log.e("aaa", "entry key: "+entry.getKey()+" - value: "+entry.getValue().getTitle().substring(0, 5));
+        for (HashMap.Entry<Integer, FeedObject> entry : filterData.entrySet()) {
+            Log.e("aaa", "entry key: " + entry.getKey() + " - value: " + entry.getValue().getTitle().substring(0, 5));
         }
         Log.e("aaa", "---");
         SortedSet<Integer> keys = new TreeSet<Integer>(filterData.keySet());
-        for(Integer key : keys) {
+        for (Integer key : keys) {
             FeedObject feed = filterData.get(key);
             boolean removeItem = false;
-            if(!data.contains(feed) && (DDGControlVar.targetSource==null || DDGControlVar.targetSource.equals(feed.getType()))) {
+            if (!data.contains(feed) && (DDGControlVar.targetSource == null || DDGControlVar.targetSource.equals(feed.getType()))) {
                 int position = key < data.size() ? key : data.size();
                 data.add(position, feed);
                 notifyItemInserted(position);
@@ -402,15 +401,15 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
     }
 
     private void filterCategory(String category) {
-        int i = data.size()-1;
+        int i = data.size() - 1;
         int size = i;
-        for(; i>=0; i--) {
+        for (; i >= 0; i--) {
             int key = i;
-            if(!data.get(i).getCategory().equals(category)) {
-                if(filterData.containsKey(i)) {
+            if (!data.get(i).getCategory().equals(category)) {
+                if (filterData.containsKey(i)) {
                     key = size;
                 }
-                if(!filterData.containsValue(data.get(i))) {
+                if (!filterData.containsValue(data.get(i))) {
                     filterData.put(key, data.get(i));
                 }
                 data.remove(i);
@@ -423,16 +422,17 @@ public class RecyclerRecentFeedAdapter extends RecyclerView.Adapter<RecyclerRece
         this.data = newData;
 //        filteredData = newData;
         notifyDataSetChanged();
-        if(DDGControlVar.targetCategory!=null) {
+        if (DDGControlVar.targetCategory != null) {
 //            filterCategory(DDGControlVar.targetCategory);
         }
     }
-/*
-    public void clear() {
-        this.data.clear();
-        notifyDataSetChanged();
-    }
-*/
+
+    /*
+        public void clear() {
+            this.data.clear();
+            notifyDataSetChanged();
+        }
+    */
     public void removeData() {
         //this.data.remo
     }

@@ -5,9 +5,9 @@ import com.duckduckgo.mobile.android.objects.history.HistoryObject;
 
 public class WebViewShowHistoryObjectEvent extends Event {
 
-	public HistoryObject historyObject;
+    public HistoryObject historyObject;
 
-	public WebViewShowHistoryObjectEvent(HistoryObject historyObject) {
-		this.historyObject = historyObject;
-	}
+    public WebViewShowHistoryObjectEvent(HistoryObject historyObject) {
+        this.historyObject = historyObject;
+    }
 }

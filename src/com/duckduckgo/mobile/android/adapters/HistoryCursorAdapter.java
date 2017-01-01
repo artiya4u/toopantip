@@ -1,30 +1,14 @@
 package com.duckduckgo.mobile.android.adapters;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.duckduckgo.mobile.android.DDGApplication;
-import com.duckduckgo.mobile.android.R;
-import com.duckduckgo.mobile.android.bus.BusProvider;
-import com.duckduckgo.mobile.android.download.AsyncImageView;
-import com.duckduckgo.mobile.android.events.pasteEvents.RecentSearchPasteEvent;
-import com.duckduckgo.mobile.android.util.DDGConstants;
-import com.duckduckgo.mobile.android.util.DDGControlVar;
-import com.squareup.picasso.Picasso;
 
 public class HistoryCursorAdapter extends CursorAdapter {
-	
+
     public HistoryCursorAdapter(Context context, Cursor c) {
         super(context, c);
     }
@@ -45,9 +29,9 @@ public class HistoryCursorAdapter extends CursorAdapter {
         // here we are setting our data
         // that means, take the data from the cursor and put it in views
 
-    	final String data = cursor.getString(cursor.getColumnIndex("data"));
-    	final String type = cursor.getString(cursor.getColumnIndex("type"));
-    	/*
+        final String data = cursor.getString(cursor.getColumnIndex("data"));
+        final String type = cursor.getString(cursor.getColumnIndex("type"));
+        /*
         //TextView textViewHistory = (TextView) view.findViewById(R.id.recentSearchText);
         //textViewHistory.setText(data);
         

@@ -1,7 +1,6 @@
 package com.duckduckgo.mobile.android.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +15,15 @@ import java.util.Map;
 
 /**
  * Separated List Adapter
- *
+ * <p>
  * Allows having multiple ListAdapters in one ListView with section headers
  *
  * @author Jeff Sharkey
  * @link http://jsharkey.org/blog/2008/08/18/separating-lists-with-headers-in-android-09/
- *
  */
 public class SearchAdapter extends BaseAdapter {
 
-    public final Map<String,Adapter> sections = new LinkedHashMap<String,Adapter>();
+    public final Map<String, Adapter> sections = new LinkedHashMap<String, Adapter>();
     public final ArrayAdapter<String> headers;
     //public final static int TYPE_SECTION_HEADER = 0;
     public final static int TYPE_SECTION_DIVIDER = 0;
@@ -55,16 +53,18 @@ public class SearchAdapter extends BaseAdapter {
     public Object getItem(int position) {
         boolean previousSectionEmpty = true;
         int sectionCounter = 0;
-        for(Object section : this.sections.keySet()) {
+        for (Object section : this.sections.keySet()) {
             Adapter adapter = sections.get(section);
-            if(!adapter.isEmpty()) {
+            if (!adapter.isEmpty()) {
                 int size = adapter.getCount();
-                if(sectionCounter>0) size++;
+                if (sectionCounter > 0) size++;
 
-                if(sectionCounter==0 && position < size) return adapter.getItem(position);
+                if (sectionCounter == 0 && position < size) return adapter.getItem(position);
                 else {
-                    if(position == 0 && !previousSectionEmpty) return inflater.inflate(resId, null, false);
-                    if(position < size) return adapter.getItem(position - (previousSectionEmpty ? 0 : 1));
+                    if (position == 0 && !previousSectionEmpty)
+                        return inflater.inflate(resId, null, false);
+                    if (position < size)
+                        return adapter.getItem(position - (previousSectionEmpty ? 0 : 1));
                 }
 
                 // check if position inside this section
@@ -85,16 +85,16 @@ public class SearchAdapter extends BaseAdapter {
     public int getCount() {
         // total together all sections, plus one for each section header
         int total = 0;
-        for(Adapter adapter : this.sections.values())
-            if(!adapter.isEmpty())
+        for (Adapter adapter : this.sections.values())
+            if (!adapter.isEmpty())
                 total += adapter.getCount() + 1;
-        return total-1;
+        return total - 1;
     }
 
     public int getViewTypeCount() {
         // assume that headers count as one, then total all sections
         int total = 1;
-        for(Adapter adapter : this.sections.values()) {
+        for (Adapter adapter : this.sections.values()) {
             total += adapter.getViewTypeCount();
         }
         return total;
@@ -104,16 +104,18 @@ public class SearchAdapter extends BaseAdapter {
         boolean previousSectionEmpty = true;
         int type = 1;
         int sectionCounter = 0;
-        for(Object section : this.sections.keySet()) {
+        for (Object section : this.sections.keySet()) {
             Adapter adapter = sections.get(section);
-            if(!adapter.isEmpty()) {
+            if (!adapter.isEmpty()) {
                 int size = adapter.getCount();
-                if(sectionCounter>0) size++;
+                if (sectionCounter > 0) size++;
 
-                if(sectionCounter==0 && position < size) return type + adapter.getItemViewType(position);
+                if (sectionCounter == 0 && position < size)
+                    return type + adapter.getItemViewType(position);
                 else {
-                    if(position == 0 && !previousSectionEmpty) return TYPE_SECTION_DIVIDER;
-                    if(position < size) return type + adapter.getItemViewType(position - (previousSectionEmpty ? 0 : 1));
+                    if (position == 0 && !previousSectionEmpty) return TYPE_SECTION_DIVIDER;
+                    if (position < size)
+                        return type + adapter.getItemViewType(position - (previousSectionEmpty ? 0 : 1));
                 }
 
                 // check if position inside this section
@@ -144,16 +146,19 @@ public class SearchAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         boolean previousSectionEmpty = true;
         int sectionnum = 0;
-        for(Object section : this.sections.keySet()) {
+        for (Object section : this.sections.keySet()) {
             Adapter adapter = sections.get(section);
-            if(!adapter.isEmpty()) {
+            if (!adapter.isEmpty()) {
                 int size = adapter.getCount();
-                if(sectionnum>0) size++;
+                if (sectionnum > 0) size++;
 
-                if(sectionnum==0 && position < size) return adapter.getView(position, convertView, parent);
+                if (sectionnum == 0 && position < size)
+                    return adapter.getView(position, convertView, parent);
                 else {
-                    if(position == 0 && !adapter.isEmpty() && !previousSectionEmpty) return inflater.inflate(resId, parent, false);//)headers.getView(sectionnum, convertView, parent);
-                    if(position < size) return adapter.getView(position - (previousSectionEmpty ? 0 : 1), convertView, parent);
+                    if (position == 0 && !adapter.isEmpty() && !previousSectionEmpty)
+                        return inflater.inflate(resId, parent, false);//)headers.getView(sectionnum, convertView, parent);
+                    if (position < size)
+                        return adapter.getView(position - (previousSectionEmpty ? 0 : 1), convertView, parent);
                 }
                 // check if position inside this section
                 //if(position == 0 && !adapter.isEmpty()) return inflater.inflate(resId, parent, false);//)headers.getView(sectionnum, convertView, parent);

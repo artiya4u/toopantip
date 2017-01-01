@@ -40,7 +40,7 @@ public class HelpFeedbackFragment extends PreferenceFragment implements Preferen
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getListView().setPadding(0, 0, 0, 0);
         }
 
@@ -56,17 +56,17 @@ public class HelpFeedbackFragment extends PreferenceFragment implements Preferen
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-        if(preference==help) {
+        if (preference == help) {
             BusProvider.getInstance().post(new RequestOpenWebPageEvent(
                     getActivity().getResources().getString(R.string.help_link), SESSIONTYPE.SESSION_BROWSE));
             return true;
-        } else if(preference==feedback) {
+        } else if (preference == feedback) {
             Intent feedbackIntent = DDGUtils.newEmailIntent(getActivity().getResources().getString(R.string.FeedbackTo),
                     getActivity().getResources().getString(R.string.FeedbackSubject), DDGUtils.getBuildInfo(getActivity()), "");
             startActivity(Intent.createChooser(
                     feedbackIntent, getActivity().getResources().getString(R.string.select_application)));
             return true;
-        } else if(preference==rate) {
+        } else if (preference == rate) {
             Intent rateIntent = new Intent(Intent.ACTION_VIEW);
             rateIntent.setData(Uri.parse(getString(R.string.LinkToApp_Google)));
             startActivity(rateIntent);

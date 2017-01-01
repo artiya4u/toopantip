@@ -52,17 +52,17 @@ public class RecentResultCursorAdapter extends CursorAdapter {
 
         final String data = cursor.getString(cursor.getColumnIndex("data"));
         TextView sub = (TextView) view.findViewById(R.id.item_text2);
-        if(sub!=null) {
+        if (sub != null) {
             //sub.setText(userInput);
         }
         TextView sub2 = (TextView) view.findViewById(R.id.item_text3);
-        if(sub2!=null && userInput.length()>0) {
+        if (sub2 != null && userInput.length() > 0) {
             //sub2.setText(data.substring(userInput.length()));
         }
         Spannable word;
 
         TextView title = (TextView) view.findViewById(R.id.item_text);
-        if(title!=null) {
+        if (title != null) {
 
             if (userInput.length() != 0 && data.startsWith(userInput.toString())) {
                 word = new SpannableString(userInput);
@@ -84,8 +84,8 @@ public class RecentResultCursorAdapter extends CursorAdapter {
         }
 
         ImageButton pasteButton = (ImageButton) view.findViewById(R.id.item_paste);
-        if(pasteButton!=null) {
-            if(hidePasteButton) {
+        if (pasteButton != null) {
+            if (hidePasteButton) {
                 pasteButton.setVisibility(View.GONE);
             } else {
                 pasteButton.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +102,7 @@ public class RecentResultCursorAdapter extends CursorAdapter {
     @Override
     public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
         userInput = constraint;
-        if(!constraint.toString().equals("")) {
+        if (!constraint.toString().equals("")) {
             return DDGApplication.getDB().getCursorSearchHistory(constraint.toString());
         }
         return DDGApplication.getDB().getCursorSearchHistory();

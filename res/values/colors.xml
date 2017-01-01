@@ -8,19 +8,15 @@
 
     <!-- new colors -->
 
-    <color name="colorPrimary">@color/colorPrimaryRed</color>
-    <color name="colorPrimaryDark">@color/colorPrimaryDarkRed</color>
-    <color name="colorPrimaryLight">@color/colorPrimaryLightRed</color>
+    <color name="colorPrimary">@color/colorPrimaryBlue</color>
+    <color name="colorPrimaryDark">@color/colorPrimaryDarkBlue</color>
+    <color name="colorPrimaryLight">@color/colorPrimaryLightBlue</color>
 
-    <color name="colorPrimaryRed">#de5833</color>
-    <color name="colorPrimaryDarkRed">#bd4b2b</color>
-    <color name="colorPrimaryLightRed">#e37151</color>
+    <color name="accentGold">#ffd825</color>
 
-    <color name="accentGold">#f1a031</color>
-
-    <color name="colorPrimaryBlue">#4495d4</color>
-    <color name="colorPrimaryDarkBlue">#3a7fb4</color>
-    <color name="colorPrimaryLightBlue">#60a5da</color>
+    <color name="colorPrimaryBlue">#3C3963</color>
+    <color name="colorPrimaryDarkBlue">#2D2C4E</color>
+    <color name="colorPrimaryLightBlue">#474572</color>
 
     <color name="accentGreen">#5b9e4d</color>
     <color name="accentPurple">#5454db</color>
@@ -38,8 +34,8 @@
     <color name="actionbar_tab_selected">@color/white</color>
     <color name="actionbar_tab_unselected">#7fffffff</color>
 
-    <color name="actionbar_progressbar_background">#98c5e7</color>
-    <color name="actionbar_progressbar_color">#4495d4</color>
+    <color name="actionbar_progressbar_background">#b69e00</color>
+    <color name="actionbar_progressbar_color">#ffd825</color>
 
     <color name="search_dark">#212121</color>
     <color name="search_light">#a4a4a4</color>
@@ -47,7 +43,7 @@
     <color name="text_light">#757575</color>
 
     <color name="background">#eeeeee</color>
-    <color name="action_mode_background">#9b3d24</color>
+    <color name="action_mode_background">#474572</color>
 
     <color name="overflow_menu_divider">#dddddd</color>
 
@@ -65,15 +61,15 @@
     <color name="auto_complete_image">#fafafa</color>
     <color name="auto_complete_image_pressed">#d9d9d9</color>
     <color name="auto_complete_image_border">#c7c7c7</color>
-    
-	<color name="translucent_grey">#BB000000</color>
-	<color name="holo_blue_bright">#ff00ddff</color>
-	<color name="holo_blue_dark">#ff0099cc</color>
-	<color name="topbar_top">#ffffff</color>
+
+    <color name="translucent_grey">#BB000000</color>
+    <color name="holo_blue_bright">#ff00ddff</color>
+    <color name="holo_blue_dark">#ff0099cc</color>
+    <color name="topbar_top">#ffffff</color>
     <color name="topbar_bottom">#E6E6E6</color>
     <color name="topbar_background">#f2f2f2</color>
     <color name="topbar_background_transparent">#00000000</color>
-    
+
     <color name="menuitem_onclick_light">#e1e2e6</color>
     <color name="left_bg_light">#edeef0</color>
     <color name="main_bg">#edeef0</color>
@@ -84,9 +80,9 @@
     <color name="search_bar_background">#2A2D33</color>
     <color name="search_bar_background_dark">#363940</color>
     <color name="left_secondary_text">#9c9fa6</color>
-    
+
     <color name="left_bg_light2">#e2e1e6</color>
-    
+
     <color name="tab_text_inactive">#9fa4aa</color>
     <color name="tab_text_active">#6f7075</color>
 </resources>

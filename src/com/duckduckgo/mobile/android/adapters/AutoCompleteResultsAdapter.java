@@ -83,10 +83,10 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
         if (view == null) {
             view = inflater.inflate(R.layout.item_autocomplete, null);
             view.setTag(new Holder(
-                    (TextView)view.findViewById(R.id.item_text),
-                    (TextView)view.findViewById(R.id.item_text_detail),
-                    (AsyncImageView)view.findViewById(R.id.item_icon),
-                    (ImageButton)view.findViewById(R.id.item_paste)));
+                    (TextView) view.findViewById(R.id.item_text),
+                    (TextView) view.findViewById(R.id.item_text_detail),
+                    (AsyncImageView) view.findViewById(R.id.item_icon),
+                    (ImageButton) view.findViewById(R.id.item_paste)));
         }
 
         final SuggestObject suggestion = getSuggestionObject(position);
@@ -101,8 +101,8 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
             stringSuggestion = new StringBuilder();
 
             boolean keepCopying = true;
-            for(int i=0; i<suggestion.getPhrase().length(); i++) {
-                if(keepCopying && i<userInput.length() && userInput.charAt(i)==suggestion.getPhrase().charAt(i)) {
+            for (int i = 0; i < suggestion.getPhrase().length(); i++) {
+                if (keepCopying && i < userInput.length() && userInput.charAt(i) == suggestion.getPhrase().charAt(i)) {
                     stringInput.append(userInput.charAt(i));
                 } else {
                     keepCopying = false;
@@ -119,7 +119,7 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
             holder.result.append(word);
 
             String snippet = suggestion.getSnippet();
-            if(snippet!=null && snippet.length()>0) {
+            if (snippet != null && snippet.length() > 0) {
                 holder.detail.setText(suggestion.getSnippet());
                 holder.detail.setVisibility(View.VISIBLE);
             } else {
@@ -132,7 +132,7 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
                 @Override
                 public void onClick(View v) {
                     String phrase = suggestion.getPhrase();
-                    if(phrase!=null) {
+                    if (phrase != null) {
                         BusProvider.getInstance().post(new SuggestionPasteEvent(suggestion.getPhrase()));
                     }
                 }
@@ -140,7 +140,7 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
 
             //Drawable acDrawable = suggestion.getDrawable();
             String imageUrl = suggestion.getImageUrl();
-            if(imageUrl != null && imageUrl.length() != 0){// && !imageUrl.contains("search-suggestions_default.png")) {
+            if (imageUrl != null && imageUrl.length() != 0) {// && !imageUrl.contains("search-suggestions_default.png")) {
                 Log.e("aaa", "image url: " + imageUrl);
                 roundTransform.setRadius(holder.icon.getCornerRadius());
                 //scaleTransform.setTarget(holder.icon, 0.6);
@@ -152,8 +152,7 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
                         .transform(scaleTransform)
                         .transform(roundTransform)
                         .into(holder.icon);
-            }
-            else {
+            } else {
                 holder.icon.setImageDrawable(null);
             }
         }
@@ -165,6 +164,7 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
         final TextView detail;
         final AsyncImageView icon;
         final ImageButton plus;
+
         public Holder(final TextView result, final TextView detail, final AsyncImageView icon, final ImageButton plus) {
             this.result = result;
             this.detail = detail;
@@ -187,11 +187,11 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
                     //TODO: Check if this constraint is already in the cache
                     JSONArray json = getJSONResultForConstraint(constraint);
                     // also search in apps
-                    if(DDGControlVar.includeAppsInSearch) {
+                    if (DDGControlVar.includeAppsInSearch) {
                         Context context = getContext();
                         ArrayList<AppShortInfo> appResults = DDGApplication.getDB().selectApps(constraint.toString());
-                        if(appResults != null) {
-                            for(AppShortInfo appInfo : appResults) {
+                        if (appResults != null) {
+                            for (AppShortInfo appInfo : appResults) {
                                 SuggestObject item = new SuggestObject(appInfo.name, appInfo.packageName, context);
                                 if (item != null) {
                                     newResults.add(item);
@@ -225,7 +225,7 @@ public class AutoCompleteResultsAdapter extends ArrayAdapter<SuggestObject> impl
                 mResultList.clear();
                 if (results != null && results.count > 0) {
                     @SuppressWarnings("unchecked")
-                    ArrayList<SuggestObject> newResults = (ArrayList<SuggestObject>)results.values;
+                    ArrayList<SuggestObject> newResults = (ArrayList<SuggestObject>) results.values;
                     mResultList.addAll(newResults);
                     notifyDataSetChanged();
                 } else {

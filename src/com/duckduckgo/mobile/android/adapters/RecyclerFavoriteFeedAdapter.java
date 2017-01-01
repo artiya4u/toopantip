@@ -79,7 +79,7 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         menu = new MenuBuilder(context);
-        ((Activity)context).getMenuInflater().inflate(R.menu.feed, menu);
+        ((Activity) context).getMenuInflater().inflate(R.menu.feed, menu);
         feedMenu = new DDGOverflowMenu(context);
     }
 
@@ -106,7 +106,7 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
                     .into(holder.imageViewBackground);
         }
 
-        holder.imageViewFeedIcon.setType(feed.getType());	// stored source id in imageview
+        holder.imageViewFeedIcon.setType(feed.getType());    // stored source id in imageview
 
         final View iconParent = (View) holder.imageViewFeedIcon.getParent();//view.findViewById(R.id.feedWrapper);
         iconParent.post(new Runnable() {
@@ -129,7 +129,9 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
                     ((View) delegate.getParent())
                             .setTouchDelegate(expandedArea);
                 }
-            };
+            }
+
+            ;
         });
 
         //Set the Title
@@ -140,8 +142,8 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
         holder.frameCategoryContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(DDGControlVar.targetCategory!=null) {
-                    DDGControlVar.targetCategory=null;
+                if (DDGControlVar.targetCategory != null) {
+                    DDGControlVar.targetCategory = null;
                     //resetFilterCategory();
                     cancelCategoryFilter();
                     //BusProvider.getInstance().post(new FeedCancelCategoryFilterEvent());
@@ -152,7 +154,7 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
             }
         });
 
-        if(DDGControlVar.readArticles.contains(feed.getId())){
+        if (DDGControlVar.readArticles.contains(feed.getId())) {
             holder.textViewTitle.setTextColor(Color.GRAY);
         }
 
@@ -167,14 +169,13 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
                 String host = feedUrl.getHost();
                 if (host.indexOf(".") != host.lastIndexOf(".")) {
                     //Cut off the beginning, because we don't want/need it
-                    host = host.substring(host.indexOf(".")+1);
+                    host = host.substring(host.indexOf(".") + 1);
                 }
 
                 Bitmap bitmap = DDGApplication.getImageCache().getBitmapFromCache("DUCKDUCKICO--" + feed.getType(), false);
-                if(bitmap != null){
+                if (bitmap != null) {
                     holder.imageViewFeedIcon.setBitmap(bitmap);
-                }
-                else {
+                } else {
                     Picasso.with(context)
                             .load(DDGConstants.ICON_LOOKUP_URL + host + ".ico")
                             .placeholder(android.R.color.transparent)
@@ -184,8 +185,6 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
         }
 
 
-
-
         final String sourceType = feed.getType();
 
         holder.imageViewFeedIcon.setOnClickListener(new View.OnClickListener() {
@@ -193,16 +192,16 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
             public void onClick(View v) {
                 //BusProvider.getInstance().post(new SourceFilterEvent(itemView, sourceType, feed));
 
-                Log.e("aaa", "ddg target source clicked: "+sourceType);
-                if(DDGControlVar.targetSource!=null) {
-                    DDGControlVar.targetSource=null;
+                Log.e("aaa", "ddg target source clicked: " + sourceType);
+                if (DDGControlVar.targetSource != null) {
+                    DDGControlVar.targetSource = null;
                     //resetFilterSource();
                     cancelSourceFilter();
                     //BusProvider.getInstance().post(new FeedCancelSourceFilterEvent());
                 } else {
                     DDGControlVar.targetSource = sourceType;
                     DDGControlVar.hasUpdatedFeed = false;
-                    Log.e("aaa", "ddg target source: "+DDGControlVar.targetSource);
+                    Log.e("aaa", "ddg target source: " + DDGControlVar.targetSource);
                     //BusProvider.getInstance().post(new SourceFilterEvent(itemView, sourceType, feed));
                     //filterSource(sourceType);
                     filterSource(sourceType);
@@ -243,11 +242,11 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
     }
 
     private void showMenu(View anchor, FeedObject feed) {
-        if(feedMenu==null) {
+        if (feedMenu == null) {
             feedMenu = new DDGOverflowMenu(context);
         }
-        if(!feedMenu.isShowing()) {
-            if(DDGApplication.getDB().isSaved(feed.getId())) {
+        if (!feedMenu.isShowing()) {
+            if (DDGApplication.getDB().isSaved(feed.getId())) {
                 menu.findItem(R.id.action_add_favorite).setVisible(false);
                 menu.findItem(R.id.action_remove_favorite).setVisible(true);
             } else {
@@ -262,16 +261,16 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
     }
 
     private void cancelSourceFilter() {
-        for(HashMap.Entry<Integer, FeedObject> entry : filterData.entrySet()) {
-            Log.e("aaa", "entry key: "+entry.getKey()+" - value: "+entry.getValue().getTitle());
+        for (HashMap.Entry<Integer, FeedObject> entry : filterData.entrySet()) {
+            Log.e("aaa", "entry key: " + entry.getKey() + " - value: " + entry.getValue().getTitle());
         }
         Log.e("aaa", "---");
         SortedSet<Integer> keys = new TreeSet<Integer>(filterData.keySet());
-        for(Integer key : keys) {
-            Log.e("aaa", "entry value: "+key+" - value: "+filterData.get(key).getTitle().substring(0, 5));
+        for (Integer key : keys) {
+            Log.e("aaa", "entry value: " + key + " - value: " + filterData.get(key).getTitle().substring(0, 5));
             FeedObject feed = filterData.get(key);
             boolean removeItem = false;
-            if(!data.contains(feed) && (DDGControlVar.targetCategory==null || DDGControlVar.targetCategory.equals(feed.getType()))) {
+            if (!data.contains(feed) && (DDGControlVar.targetCategory == null || DDGControlVar.targetCategory.equals(feed.getType()))) {
                 int position = key < data.size() ? key : data.size();
                 data.add(position, feed);
                 notifyItemInserted(position);
@@ -286,15 +285,15 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
     }
 
     private void filterSource(String source) {
-        int i = data.size()-1;
+        int i = data.size() - 1;
         int size = i;
-        for(; i>=0; i--) {
+        for (; i >= 0; i--) {
             int key = i;
-            if(filterData.containsKey(i)) {
+            if (filterData.containsKey(i)) {
                 key = size;
             }
-            if(!data.get(i).getType().equals(source)) {
-                if(!filterData.containsValue(data.get(i))) {
+            if (!data.get(i).getType().equals(source)) {
+                if (!filterData.containsValue(data.get(i))) {
                     filterData.put(key, data.get(i));
                 }
                 data.remove(i);
@@ -304,15 +303,15 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
     }
 
     private void cancelCategoryFilter() {
-        for(HashMap.Entry<Integer, FeedObject> entry : filterData.entrySet()) {
-            Log.e("aaa", "entry key: "+entry.getKey()+" - value: "+entry.getValue().getTitle().substring(0, 5));
+        for (HashMap.Entry<Integer, FeedObject> entry : filterData.entrySet()) {
+            Log.e("aaa", "entry key: " + entry.getKey() + " - value: " + entry.getValue().getTitle().substring(0, 5));
         }
         Log.e("aaa", "---");
         SortedSet<Integer> keys = new TreeSet<Integer>(filterData.keySet());
-        for(Integer key : keys) {
+        for (Integer key : keys) {
             FeedObject feed = filterData.get(key);
             boolean removeItem = false;
-            if(!data.contains(feed) && (DDGControlVar.targetSource==null || DDGControlVar.targetSource.equals(feed.getType()))) {
+            if (!data.contains(feed) && (DDGControlVar.targetSource == null || DDGControlVar.targetSource.equals(feed.getType()))) {
                 int position = key < data.size() ? key : data.size();
                 data.add(position, feed);
                 notifyItemInserted(position);
@@ -326,15 +325,15 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
     }
 
     private void filterCategory(String category) {
-        int i = data.size()-1;
+        int i = data.size() - 1;
         int size = i;
-        for(; i>=0; i--) {
+        for (; i >= 0; i--) {
             int key = i;
-            if(!data.get(i).getCategory().equals(category)) {
-                if(filterData.containsKey(i)) {
+            if (!data.get(i).getCategory().equals(category)) {
+                if (filterData.containsKey(i)) {
                     key = size;
                 }
-                if(!filterData.containsValue(data.get(i))) {
+                if (!filterData.containsValue(data.get(i))) {
                     filterData.put(key, data.get(i));
                 }
                 data.remove(i);
@@ -347,10 +346,11 @@ public class RecyclerFavoriteFeedAdapter extends RecyclerView.Adapter<RecyclerFa
         this.data = newData;
 //        filteredData = newData;
         notifyDataSetChanged();
-        if(DDGControlVar.targetCategory!=null) {
+        if (DDGControlVar.targetCategory != null) {
 //            filterCategory(DDGControlVar.targetCategory);
         }
     }
+
     /*
         public void clear() {
             this.data.clear();

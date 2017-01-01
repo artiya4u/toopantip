@@ -73,7 +73,7 @@ public class RecentFeedCursorAdapter extends CursorAdapter {
                     .into(imageViewBackground);
         }
 
-        imageViewFeedIcon.setType(feedType);	// stored source id in imageview
+        imageViewFeedIcon.setType(feedType);    // stored source id in imageview
 
         final View iconParent = (View) imageViewBackground.getParent();
         iconParent.post(new Runnable() {
@@ -96,7 +96,9 @@ public class RecentFeedCursorAdapter extends CursorAdapter {
                     ((View) delegate.getParent())
                             .setTouchDelegate(expandedArea);
                 }
-            };
+            }
+
+            ;
         });
 
         //Set the Title
@@ -105,7 +107,7 @@ public class RecentFeedCursorAdapter extends CursorAdapter {
         //Set the Category
         textViewCategory.setText(category.toUpperCase());
 
-        if(DDGControlVar.readArticles.contains(feedId)){
+        if (DDGControlVar.readArticles.contains(feedId)) {
             textViewTitle.setTextColor(Color.GRAY);
         }
 
@@ -120,14 +122,13 @@ public class RecentFeedCursorAdapter extends CursorAdapter {
                 String host = feedUrl.getHost();
                 if (host.indexOf(".") != host.lastIndexOf(".")) {
                     //Cut off the beginning, because we don't want/need it
-                    host = host.substring(host.indexOf(".")+1);
+                    host = host.substring(host.indexOf(".") + 1);
                 }
 
                 Bitmap bitmap = DDGApplication.getImageCache().getBitmapFromCache("DUCKDUCKICO--" + feedType, false);
-                if(bitmap != null){
+                if (bitmap != null) {
                     imageViewFeedIcon.setBitmap(bitmap);
-                }
-                else {
+                } else {
                     Picasso.with(context)
                             .load(DDGConstants.ICON_LOOKUP_URL + host + ".ico")
                             .placeholder(android.R.color.transparent)

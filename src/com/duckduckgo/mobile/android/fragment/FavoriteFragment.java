@@ -12,22 +12,22 @@ import com.squareup.otto.Subscribe;
 
 public class FavoriteFragment extends TabFragment {
 
-	public static final String TAG = "saved_fragment";
+    public static final String TAG = "saved_fragment";
 
     private Menu favoriteMenu = null;
     private DDGOverflowMenu overflowMenu = null;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         BusProvider.getInstance().register(this);
-	}
+    }
 
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		BusProvider.getInstance().unregister(this);
-	}
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        BusProvider.getInstance().unregister(this);
+    }
 
     @Override
     protected TabItem getFirstTabItem() {
@@ -46,9 +46,9 @@ public class FavoriteFragment extends TabFragment {
 
     @Subscribe
     public void onOverflowButtonClickEvent(OverflowButtonClickEvent event) {
-        if(DDGControlVar.mDuckDuckGoContainer.currentFragmentTag.equals(getTag()) && favoriteMenu!=null) {
+        if (DDGControlVar.mDuckDuckGoContainer.currentFragmentTag.equals(getTag()) && favoriteMenu != null) {
             favoriteMenu.findItem(R.id.action_favorites).setEnabled(false);
-            if(overflowMenu!=null && overflowMenu.isShowing()) {
+            if (overflowMenu != null && overflowMenu.isShowing()) {
                 return;
             }
 

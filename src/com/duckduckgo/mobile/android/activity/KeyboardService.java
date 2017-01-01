@@ -2,7 +2,6 @@ package com.duckduckgo.mobile.android.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -14,7 +13,7 @@ public class KeyboardService {
         this.activity = activity;
     }
 
-    public void hideKeyboardDelayed(final View view){
+    public void hideKeyboardDelayed(final View view) {
         view.postDelayed(new Runnable() {
             @Override
             public void run() {

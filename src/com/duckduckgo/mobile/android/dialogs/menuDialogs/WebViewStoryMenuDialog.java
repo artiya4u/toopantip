@@ -13,16 +13,16 @@ import com.duckduckgo.mobile.android.objects.FeedObject;
 /*
 Shows a dialog to alert the user the feedrequest failed, asking him to try again.
  */
-public final class WebViewStoryMenuDialog extends AlertDialog.Builder{
-	public WebViewStoryMenuDialog(final Context context, FeedObject feedObject, boolean webViewIsInReadabilityMode) {
-		super(context);
-		setTitle(R.string.StoryOptionsTitle);
-		
-		if(feedObject == null)
-			return;
+public final class WebViewStoryMenuDialog extends AlertDialog.Builder {
+    public WebViewStoryMenuDialog(final Context context, FeedObject feedObject, boolean webViewIsInReadabilityMode) {
+        super(context);
+        setTitle(R.string.StoryOptionsTitle);
 
-        final PageMenuContextAdapter contextAdapter  = new WebViewStoryMenuAdapter(context, android.R.layout.select_dialog_item, android.R.id.text1,
-                feedObject, webViewIsInReadabilityMode);        
+        if (feedObject == null)
+            return;
+
+        final PageMenuContextAdapter contextAdapter = new WebViewStoryMenuAdapter(context, android.R.layout.select_dialog_item, android.R.id.text1,
+                feedObject, webViewIsInReadabilityMode);
         setAdapter(contextAdapter, new ExecuteActionOnClickListener(contextAdapter));
-	}
+    }
 }

@@ -1,22 +1,18 @@
 package com.duckduckgo.mobile.android.views.webview;
 
-import com.duckduckgo.mobile.android.actionbar.DDGActionBarManager;
-import com.duckduckgo.mobile.android.fragment.WebFragment;
-import com.duckduckgo.mobile.android.util.DDGControlVar;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
-import android.opengl.Visibility;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.VideoView;
+
+import com.duckduckgo.mobile.android.actionbar.DDGActionBarManager;
+import com.duckduckgo.mobile.android.util.DDGControlVar;
 
 public class DDGWebChromeClient extends WebChromeClient implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
 
@@ -33,29 +29,29 @@ public class DDGWebChromeClient extends WebChromeClient implements MediaPlayer.O
         this.hideContent = hideContent;
         this.showContent = showContent;
     }
-	
-	@Override
-	public void onProgressChanged(WebView view, int newProgress) {
-		super.onProgressChanged(view, newProgress);
-		
-		if(view.getVisibility() != View.VISIBLE) {
-			return;
-		}
 
-        if(!DDGControlVar.mCleanSearchBar) {
+    @Override
+    public void onProgressChanged(WebView view, int newProgress) {
+        super.onProgressChanged(view, newProgress);
+
+        if (view.getVisibility() != View.VISIBLE) {
+            return;
+        }
+
+        if (!DDGControlVar.mCleanSearchBar) {
             DDGActionBarManager.getInstance().setProgress(newProgress);
         }
-	}
+    }
 
     @Override
     public void onShowCustomView(View view, int requestedOrientation, CustomViewCallback callback) {
         onShowCustomView(view, callback);
     }
 
-	@Override
-	public void onShowCustomView(View view, CustomViewCallback callback) {
-        if(view instanceof FrameLayout) {
-            FrameLayout layout = (FrameLayout)view;
+    @Override
+    public void onShowCustomView(View view, CustomViewCallback callback) {
+        if (view instanceof FrameLayout) {
+            FrameLayout layout = (FrameLayout) view;
             View focusedChild = layout.getFocusedChild();
 
             this.isVideoFullscreen = true;
@@ -71,20 +67,20 @@ public class DDGWebChromeClient extends WebChromeClient implements MediaPlayer.O
                 videoView.setOnCompletionListener(this);
                 videoView.setOnErrorListener(this);
             }
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 addFullscreenFlag();
             }
         }
-	}
+    }
 
-	@Override
-	public void onHideCustomView() {
-        if(isVideoFullscreen) {
+    @Override
+    public void onHideCustomView() {
+        if (isVideoFullscreen) {
             showContent.setVisibility(View.INVISIBLE);
             showContent.removeView(videoViewContainer);
             hideContent.setVisibility(View.VISIBLE);
 
-            if(videoViewCallback!=null) {
+            if (videoViewCallback != null) {
                 videoViewCallback.onCustomViewHidden();
             }
 
@@ -92,11 +88,11 @@ public class DDGWebChromeClient extends WebChromeClient implements MediaPlayer.O
             videoViewContainer = null;
             videoViewCallback = null;
 
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 removeFullscreenFlag();
             }
         }
-	}
+    }
 
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -104,9 +100,9 @@ public class DDGWebChromeClient extends WebChromeClient implements MediaPlayer.O
         View decorView = activity.getWindow().getDecorView();
         int flags = 0;
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             flags = getImmersiveStickyFlag();
-        } else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             flags = getFullscreenFlags();
         }
         decorView.setSystemUiVisibility(flags);

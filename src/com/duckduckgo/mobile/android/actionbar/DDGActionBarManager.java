@@ -129,7 +129,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.home:
                 stopProgress();
                 setProgressBarVisible(false);
@@ -141,7 +141,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
                 getSearchField().addBang();
                 break;
             case R.id.overflow:
-                if(tag.equals(WebFragment.TAG)) {
+                if (tag.equals(WebFragment.TAG)) {
                     BusProvider.getInstance().post(new OverflowButtonClickEvent(toolbar));
                 } else {
                     showMenu(tag);
@@ -154,7 +154,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
 
     @Override
     public boolean onLongClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.home:
                 Toast.makeText(context, "Home", Toast.LENGTH_SHORT).show();
                 return true;
@@ -167,15 +167,15 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     }
 
     public void updateActionBar(FragmentManager fragmentManager, String tag, boolean backPressed) {
-        Log.d(TAG, "update actionbar: "+tag);
+        Log.d(TAG, "update actionbar: " + tag);
 
         this.tag = tag;
         SCREEN screen = DDGUtils.getScreenByTag(tag);
 
-        boolean isStartingScreen = DDGControlVar.START_SCREEN==screen;
-        if(!tag.equals(SearchFragment.TAG)) {
+        boolean isStartingScreen = DDGControlVar.START_SCREEN == screen;
+        if (!tag.equals(SearchFragment.TAG)) {
             Fragment searchFragment = fragmentManager.findFragmentByTag(SearchFragment.TAG);
-            if(searchFragment==null || !searchFragment.isVisible()) {
+            if (searchFragment == null || !searchFragment.isVisible()) {
 
                 getSearchField().setFocusable(false);
                 getSearchField().setFocusableInTouchMode(false);
@@ -188,13 +188,13 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
         int overflowVisibleRightMargin = 0;
         int actionButtonVisibleLeftMargin = (int) context.getResources().getDimension(R.dimen.actionbar_searchbar_left_margin_with_button);
         overflowVisibleRightMargin = actionButtonVisibleLeftMargin;
-        int leftMargin , rightMargin;
+        int leftMargin, rightMargin;
 
-        for(int i=0; i<mainMenu.size(); i++) {
+        for (int i = 0; i < mainMenu.size(); i++) {
             mainMenu.getItem(i).setEnabled(true);
         }
 
-        switch(screen) {
+        switch (screen) {
             case SCR_STORIES:
                 clearSearchBar();
                 showSearchField();
@@ -216,13 +216,13 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
                 setProgressBarVisible(false);
 
                 MenuItem feedItem = mainMenu.findItem(R.id.action_stories);
-                if(feedItem!=null) {
+                if (feedItem != null) {
                     feedItem.setEnabled(false);
                 }
                 break;
             case SCR_RECENTS:
 
-               clearSearchBar();
+                clearSearchBar();
 
                 showSearchField();
 
@@ -242,7 +242,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
                 setProgressBarVisible(false);
 
                 MenuItem recentItem = mainMenu.findItem(R.id.action_recents);
-                if(recentItem!=null) {
+                if (recentItem != null) {
                     recentItem.setEnabled(false);
                 }
                 break;
@@ -267,7 +267,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
                 setProgressBarVisible(false);
 
                 MenuItem favoriteItem = mainMenu.findItem(R.id.action_favorites);
-                if(favoriteItem!=null) {
+                if (favoriteItem != null) {
                     favoriteItem.setEnabled(false);
                 }
                 break;
@@ -349,10 +349,10 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
                 break;
         }
 
-        if(backPressed || DDGControlVar.mDuckDuckGoContainer.prevFragmentTag.equals(SearchFragment.TAG)
+        if (backPressed || DDGControlVar.mDuckDuckGoContainer.prevFragmentTag.equals(SearchFragment.TAG)
                 || DDGControlVar.mDuckDuckGoContainer.prevFragmentTag.equals(SearchFragment.TAG_HOME_PAGE)) {
             keyboardService.hideKeyboardDelayed(searchField);
-        } else if((tag.equals(SearchFragment.TAG) || tag.equals(SearchFragment.TAG_HOME_PAGE))) {
+        } else if ((tag.equals(SearchFragment.TAG) || tag.equals(SearchFragment.TAG_HOME_PAGE))) {
             keyboardService.showKeyboard(searchField);
         }
     }
@@ -365,11 +365,11 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
 
     public void toggleProgressBarVisibility(boolean visible, boolean withAnimation) {
         View progressBarContainer = toolbar.findViewById(R.id.progress_container);
-        if((!visible && progressBarContainer.getVisibility()==View.GONE) || (visible && progressBarContainer.getVisibility()==View.VISIBLE)) {
+        if ((!visible && progressBarContainer.getVisibility() == View.GONE) || (visible && progressBarContainer.getVisibility() == View.VISIBLE)) {
             return;
         }
 
-        if(withAnimation) {
+        if (withAnimation) {
             int resId = visible ? R.anim.show_progressbar : R.anim.hide_progressbar;
             Animation animation = AnimationUtils.loadAnimation(context, resId);
             progressBarContainer.setAnimation(animation);
@@ -381,7 +381,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     public void setProgressBarVisible(boolean visible) {
         isProgressVisible = visible;
 
-        if(!visible) {
+        if (!visible) {
             toggleProgressBarVisibility(false, false);
         } else {
             toggleProgressBarVisibility(true, true);
@@ -389,10 +389,10 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     }
 
     public void setProgress(int newProgress) {
-        if(!isProgressVisible) {
+        if (!isProgressVisible) {
             return;
         }
-        if(newProgress<oldProgress) {
+        if (newProgress < oldProgress) {
             return;
         }
 
@@ -403,7 +403,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
         progressBar.startAnimation(progressBarAnimation);
         oldProgress = newProgress;
 
-        if(oldProgress>=100) {
+        if (oldProgress >= 100) {
             oldProgress = 0;
             toggleProgressBarVisibility(false, true);
         }
@@ -435,7 +435,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
 
     private void setActionBarMargins(int newLeft, int newTop, int newRight, int newBottom) {
         final RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) searchFieldContainer.getLayoutParams();
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             ValueAnimator leftValueAnimator = ValueAnimator.ofInt(params.leftMargin, newLeft);
             leftValueAnimator.setDuration(250);
             leftValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -492,12 +492,12 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
             bangButton.setVisibility(View.GONE);
         }
 
-        if(visible) {
+        if (visible) {
             if (homeButton.getVisibility() == View.GONE) {
                 homeButton.setAnimation(fadeIn);
                 homeButton.setVisibility(View.VISIBLE);
             }
-        } else if(homeButton.getVisibility() == View.VISIBLE) {
+        } else if (homeButton.getVisibility() == View.VISIBLE) {
             homeButton.setAnimation(fadeOut);
             homeButton.setVisibility(View.GONE);
         }
@@ -514,12 +514,12 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
         Animation fadeIn = AnimationUtils.loadAnimation(context, R.anim.actionbar_button_fade_in);
         Animation fadeOut = AnimationUtils.loadAnimation(context, R.anim.actionbar_button_fade_out);
 
-        if(homeButton.getVisibility()==View.VISIBLE) {
+        if (homeButton.getVisibility() == View.VISIBLE) {
             homeButton.setAnimation(fadeOut);
             homeButton.setVisibility(View.GONE);
         }
 
-        if(bangButton.getVisibility()==View.GONE) {
+        if (bangButton.getVisibility() == View.GONE) {
             bangButton.setAnimation(fadeIn);
             bangButton.setVisibility(View.VISIBLE);
         }
@@ -528,13 +528,13 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     public void setOverflowButton(boolean visible) {
         Animation fadeIn = AnimationUtils.loadAnimation(context, R.anim.actionbar_button_fade_in);
         Animation fadeOut = AnimationUtils.loadAnimation(context, R.anim.actionbar_button_fade_out);
-        if(visible) {
-            if(overflowButton.getVisibility()==View.GONE) {
+        if (visible) {
+            if (overflowButton.getVisibility() == View.GONE) {
                 overflowButton.setAnimation(fadeIn);
                 overflowButton.setVisibility(View.VISIBLE);
             }
         } else {
-            if(overflowButton.getVisibility()==View.VISIBLE) {
+            if (overflowButton.getVisibility() == View.VISIBLE) {
                 overflowButton.setAnimation(fadeOut);
                 overflowButton.setVisibility(View.GONE);
             }
@@ -552,13 +552,13 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     }
 
     private void setTabLayout(boolean visible) {
-        boolean gone = slidingTabLayout.getVisibility()==View.GONE;
-        if(visible) {
-            if(slidingTabLayout.getVisibility()==View.GONE) {
+        boolean gone = slidingTabLayout.getVisibility() == View.GONE;
+        if (visible) {
+            if (slidingTabLayout.getVisibility() == View.GONE) {
                 expandView(slidingTabLayout);
             }
         } else {
-            if(slidingTabLayout.getVisibility()==View.VISIBLE) {
+            if (slidingTabLayout.getVisibility() == View.VISIBLE) {
                 collapseView(slidingTabLayout);
             }
         }
@@ -569,13 +569,13 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     }
 
     public void tryToShowTab() {
-        if(!isTabAnimating && slidingTabLayout.getVisibility()!=View.VISIBLE) {
+        if (!isTabAnimating && slidingTabLayout.getVisibility() != View.VISIBLE) {
             expandView(slidingTabLayout);
         }
     }
 
     public void tryToHideTab() {
-        if(!isTabAnimating && slidingTabLayout.getVisibility()!=View.GONE) {
+        if (!isTabAnimating && slidingTabLayout.getVisibility() != View.GONE) {
             collapseView(slidingTabLayout);
         }
     }
@@ -588,11 +588,10 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
         final int actualMargin = standardMargin - tabHeight;
 
         view.setVisibility(View.VISIBLE);
-        Animation a = new Animation()
-        {
+        Animation a = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
-                ((FrameLayout.LayoutParams)view.getLayoutParams()).topMargin = interpolatedTime == 1
+                ((FrameLayout.LayoutParams) view.getLayoutParams()).topMargin = interpolatedTime == 1
                         ? standardMargin
                         : (int) (actualMargin + (tabHeight * interpolatedTime));
                 view.requestLayout();
@@ -628,14 +627,13 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
         final int standardMargin = (int) context.getResources().getDimension(R.dimen.actionbar_height);
         final int tabHeight = (int) context.getResources().getDimension(R.dimen.actionbar_tab_height2);
 
-        Animation a = new Animation()
-        {
+        Animation a = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
-                if(interpolatedTime == 1){
+                if (interpolatedTime == 1) {
                     view.setVisibility(View.GONE);
-                }else{
-                    ((FrameLayout.LayoutParams)view.getLayoutParams()).topMargin = standardMargin -(int)(tabHeight * interpolatedTime);
+                } else {
+                    ((FrameLayout.LayoutParams) view.getLayoutParams()).topMargin = standardMargin - (int) (tabHeight * interpolatedTime);
                     view.requestLayout();
                 }
             }
@@ -668,11 +666,11 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     }
 
     public void setSearchBarText(String text) {
-        if(text==null) {
+        if (text == null) {
             text = "";
         }
 
-        if(DDGControlVar.homeScreenShowing) {
+        if (DDGControlVar.homeScreenShowing) {
             DDGControlVar.mDuckDuckGoContainer.currentUrl = "";
             return;
         }
@@ -700,7 +698,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     }
 
     public void dismissMenu() {
-        if(overflowMenu!=null && overflowMenu.isShowing()) {
+        if (overflowMenu != null && overflowMenu.isShowing()) {
             overflowMenu.dismiss();
         }
     }
@@ -708,7 +706,7 @@ public final class DDGActionBarManager implements View.OnClickListener, View.OnL
     public class ProgressBarAnimation extends Animation {
         private ProgressBar progressBar;
         private float from;
-        private float  to;
+        private float to;
 
         public ProgressBarAnimation(ProgressBar progressBar, float from, float to) {
             super();

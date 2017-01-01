@@ -20,8 +20,6 @@ package com.duckduckgo.mobile.android.dialogs;
  * limitations under the License.
  */
 
-import java.util.Date;
-
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,13 +33,15 @@ import android.widget.TextView;
 
 import com.duckduckgo.mobile.android.R;
 
+import java.util.Date;
+
 public final class SSLCertificateDialog extends Builder {
 
-	public SSLCertificateDialog(final Context context, final SslErrorHandler handler, final SslError error) {
-		super(context);
-		
-		setView(getCertificateText(context, error.getCertificate()));
-	
+    public SSLCertificateDialog(final Context context, final SslErrorHandler handler, final SslError error) {
+        super(context);
+
+        setView(getCertificateText(context, error.getCertificate()));
+
         setTitle(R.string.WarnSSLTitle);
         setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -51,20 +51,20 @@ public final class SSLCertificateDialog extends Builder {
         });
         setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-            	dialog.dismiss();
-            	handler.cancel();
+                dialog.dismiss();
+                handler.cancel();
             }
         });
-	}
+    }
 
-	/**
+    /**
      * Formats the certificate date to a properly localized date string.
+     *
      * @return Properly localized version of the certificate date string and
      * the "" if it fails to localize.
-     * 
+     * <p>
      * Method replicated from android.net.http.SslCertificate
      * Mirror: https://github.com/android/platform_frameworks_base/blob/master/core/java/android/net/http/SslCertificate.java
-     * 
      */
     private String formatCertificateDate(Context context, Date certificateDate) {
         if (certificateDate == null) {
@@ -72,22 +72,22 @@ public final class SSLCertificateDialog extends Builder {
         }
         return DateFormat.getDateFormat(context).format(certificateDate);
     }
-	
+
     /**
      * Inflates the SSL certificate view (helper method).
+     *
      * @return The resultant certificate view with issued-to, issued-by,
      * issued-on, expires-on, and possibly other fields set.
-     * 
+     * <p>
      * Method replicated from android.net.http.SslCertificate
      * Mirror: https://github.com/android/platform_frameworks_base/blob/master/core/java/android/net/http/SslCertificate.java
-     *
      * @hide Used by Browser and Settings
      */
     public View inflateCertificateView(SslCertificate certificate, Context context) {
         LayoutInflater factory = LayoutInflater.from(context);
 
         View certificateView = factory.inflate(
-            R.layout.ssl_certificate, null);
+                R.layout.ssl_certificate, null);
 
         // issued to:
         SslCertificate.DName issuedTo = certificate.getIssuedTo();
@@ -123,10 +123,10 @@ public final class SSLCertificateDialog extends Builder {
 
         return certificateView;
     }
-	
-	
-	private View getCertificateText(Context context, SslCertificate certificate) {
-		return inflateCertificateView(certificate, context);
-	}
+
+
+    private View getCertificateText(Context context, SslCertificate certificate) {
+        return inflateCertificateView(certificate, context);
+    }
 
 }

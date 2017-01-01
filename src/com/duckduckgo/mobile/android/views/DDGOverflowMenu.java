@@ -28,8 +28,8 @@ import android.widget.TextView;
 import com.duckduckgo.mobile.android.R;
 import com.duckduckgo.mobile.android.activity.DuckDuckGo;
 import com.duckduckgo.mobile.android.bus.BusProvider;
-import com.duckduckgo.mobile.android.events.WebViewEvents.WebViewUpdateMenuNavigationEvent;
 import com.duckduckgo.mobile.android.events.WebViewEvents.WebViewItemMenuClickEvent;
+import com.duckduckgo.mobile.android.events.WebViewEvents.WebViewUpdateMenuNavigationEvent;
 import com.duckduckgo.mobile.android.objects.FeedObject;
 import com.squareup.otto.Subscribe;
 
@@ -69,7 +69,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
         View container = inflater.inflate(R.layout.overflow_menu, null);
         setContentView(container);
         setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setTransitions();
         }
 
@@ -86,7 +86,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
     }
 
     public void unregisterBus() {
-        if(isBusRegistered) {
+        if (isBusRegistered) {
             isBusRegistered = false;
             BusProvider.getInstance().unregister(this);
         }
@@ -103,8 +103,8 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
 
         List<MenuItem> newMenuItems = new ArrayList<MenuItem>();
 
-        for(int i=0; i<menu.size(); i++) {
-            if(menu.getItem(i).isVisible()) {
+        for (int i = 0; i < menu.size(); i++) {
+            if (menu.getItem(i).isVisible()) {
                 newMenuItems.add(menu.getItem(i));
             }
         }
@@ -119,14 +119,14 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
         header.setVisibility(View.VISIBLE);
         headerItems = new HashMap<Integer, MenuItem>();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        for(int i=0; i<menu.size(); i++) {
+        for (int i = 0; i < menu.size(); i++) {
             ImageButton imageButton = (ImageButton) inflater.inflate(R.layout.web_navigation_button, header, false);
-            final String title = ""+menu.getItem(i).getTitle();
+            final String title = "" + menu.getItem(i).getTitle();
             final int actionId = menu.getItem(i).getItemId();
             imageButton.setId(actionId);
             imageButton.setEnabled(menu.getItem(i).isEnabled());
             imageButton.setImageDrawable(menu.getItem(i).getIcon());
-            if(menu.getItem(i).getIcon()==null) {
+            if (menu.getItem(i).getIcon() == null) {
                 imageButton.setEnabled(false);
             } else {
                 imageButton.setOnClickListener(this);
@@ -156,7 +156,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
 
     private void show(View anchor, boolean withMarginOnAnchor, boolean coverAnchor) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((DuckDuckGo)context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        ((DuckDuckGo) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         setWidth(getMaxWidth(context, overflowAdapter));
 
@@ -169,9 +169,9 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
         anchor.getGlobalVisibleRect(rect);
 
         boolean reverseMenu = false;
-        if(displayMetrics.heightPixels>height) {
+        if (displayMetrics.heightPixels > height) {
             menuListView.getLayoutParams().height = height;
-            if((displayMetrics.heightPixels-rect.top)<=height) {
+            if ((displayMetrics.heightPixels - rect.top) <= height) {
                 reverseMenu = true;
             }
         } else {
@@ -182,7 +182,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
         int xOffset = 0;
         int yOffset = 0;
 
-        if(coverAnchor) {
+        if (coverAnchor) {
             xOffset = anchor.getMeasuredWidth() - getWidth();
             yOffset = reverseMenu ? height : anchor.getMeasuredHeight();
 
@@ -195,7 +195,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
             }
         }
 
-        if(coverAnchor) {
+        if (coverAnchor) {
             showAsDropDown(anchor, xOffset, yOffset * -1);
         }
     }
@@ -218,7 +218,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(feed==null) {
+        if (feed == null) {
             BusProvider.getInstance().post(new WebViewItemMenuClickEvent(overflowAdapter.getMenuItem(position)));
         } else {
             BusProvider.getInstance().post(new WebViewItemMenuClickEvent(overflowAdapter.getMenuItem(position), feed));
@@ -248,11 +248,11 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
 
     public static int getMaxWidth(Context context, DDGOverflowAdapter adapter) {
         int maxLength = 0;
-        for(int i=0; i<adapter.getCount(); i++) {
+        for (int i = 0; i < adapter.getCount(); i++) {
             int newLength = adapter.getMenuItemTitle(i).length();
-            maxLength = newLength>maxLength ? newLength : maxLength;
+            maxLength = newLength > maxLength ? newLength : maxLength;
         }
-        int width = (int) context.getResources().getDimension(R.dimen.menu_letterspace) * (maxLength+2);
+        int width = (int) context.getResources().getDimension(R.dimen.menu_letterspace) * (maxLength + 2);
         int menuPadding = (int) context.getResources().getDimension(R.dimen.menu_padding) * 2;
         return width + menuPadding;
 
@@ -262,7 +262,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
         int maxWidth = 0;
         View view = null;
         FrameLayout fakeParent = new FrameLayout(context);
-        for (int i=0, count=adapter.getCount(); i<count; i++) {
+        for (int i = 0, count = adapter.getCount(); i < count; i++) {
             view = adapter.getView(i, view, fakeParent);
             view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             int width = view.getMeasuredWidth();
@@ -275,17 +275,17 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
 
     private int getStatusBarHeight() {
         Rect rect = new Rect();
-        Window window = ((DuckDuckGo)context).getWindow();
+        Window window = ((DuckDuckGo) context).getWindow();
         window.getDecorView().getWindowVisibleDisplayFrame(rect);
         return rect.top;
     }
 
     @Subscribe
     public void onWebViewDisableMenuNavigationButtonEvent(WebViewUpdateMenuNavigationEvent event) {
-        for(HashMap.Entry<Integer, Boolean> entry : event.newStates.entrySet()) {
+        for (HashMap.Entry<Integer, Boolean> entry : event.newStates.entrySet()) {
             ImageButton imageButton = (ImageButton) header.findViewById(entry.getKey());
-            if(imageButton!=null) {
-                imageButton.setEnabled(entry.getValue() );
+            if (imageButton != null) {
+                imageButton.setEnabled(entry.getValue());
             }
         }
     }
@@ -307,10 +307,10 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
         }
 
         public void addItems(List<MenuItem> menuItems, boolean newSection) {
-            if(newSection) {
+            if (newSection) {
                 items.add(new Item(true));
             }
-            for(MenuItem menuItem : menuItems) {
+            for (MenuItem menuItem : menuItems) {
                 items.add(new Item(menuItem));
             }
         }
@@ -322,8 +322,8 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
             int itemType = getItemViewType(position);
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            if(root==null) {
-                if(itemType==TYPE_ITEM) {
+            if (root == null) {
+                if (itemType == TYPE_ITEM) {
                     root = inflater.inflate(layoutResId, parent, false);
                     holder = new Holder();
                     holder.text = (TextView) root.findViewById(R.id.text1);
@@ -332,12 +332,12 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
                     root = inflater.inflate(R.layout.overflowmenu_divier, parent, false);
                 }
             } else {
-                if(itemType==TYPE_ITEM) {
+                if (itemType == TYPE_ITEM) {
                     holder = (Holder) root.getTag();
                 }
             }
 
-            if(itemType==TYPE_ITEM) {
+            if (itemType == TYPE_ITEM) {
                 MenuItem item = items.get(position).item;
                 holder.text.setText(item.getTitle());
                 holder.text.setEnabled(item.isEnabled());
@@ -348,8 +348,8 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
 
         public int getItemCount() {
             int out = 0;
-            for(Item item : items) {
-                if(!item.isDivider) {
+            for (Item item : items) {
+                if (!item.isDivider) {
                     out++;
                 }
             }
@@ -364,7 +364,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
         @Override
         public int getItemViewType(int position) {
             Item item = items.get(position);
-            if(item.isDivider) {
+            if (item.isDivider) {
                 return TYPE_DIVIDER;
             }
             return TYPE_ITEM;
@@ -377,7 +377,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
 
         public MenuItem getMenuItem(int position) {
             Item item = items.get(position);
-            if(item.isDivider) {
+            if (item.isDivider) {
                 return null;
             }
             return item.item;
@@ -385,7 +385,7 @@ public class DDGOverflowMenu extends PopupWindow implements View.OnClickListener
 
         public String getMenuItemTitle(int position) {
             Item item = items.get(position);
-            if(item.isDivider) {
+            if (item.isDivider) {
                 return "";
             }
             return item.item.getTitle().toString();

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list  xmlns:android="http://schemas.android.com/apk/res/android"><!-- android:shape="rectangle">-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"><!-- android:shape="rectangle">-->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/colorPrimaryLightRed"/>
+            <solid android:color="@color/colorPrimaryBlue" />
         </shape>
     </item>
     <item android:bottom="25dp"><!--padding bottom 25dp-->
-        <bitmap android:src="@drawable/logo" android:gravity="center"/>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/logo" />
     </item>
 </layer-list>

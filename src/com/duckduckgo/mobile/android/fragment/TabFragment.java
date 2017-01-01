@@ -28,7 +28,9 @@ import com.duckduckgo.mobile.android.adapters.DDGPagerAdapter;
 public abstract class TabFragment extends Fragment {
 
     protected abstract TabItem getFirstTabItem();
+
     protected abstract TabItem getSecondTabItem();
+
     protected abstract void setMenu(Menu menu);
 
     private ViewPager viewPager;
@@ -55,7 +57,7 @@ public abstract class TabFragment extends Fragment {
         int width;
 
         Display display = getActivity().getWindowManager().getDefaultDisplay();
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB_MR2) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             Point size = new Point();
             display.getSize(size);
             width = size.x;
@@ -70,8 +72,8 @@ public abstract class TabFragment extends Fragment {
         int searchesResId = (width >= getResources().getDimension(R.dimen.tab_big) ? secondTabItem.titleFull : secondTabItem.titleNarrow);
 
         pagerAdapter = new DDGPagerAdapter(getChildFragmentManager(),
-                new String[] {getResources().getString(storiesResId), getResources().getString(searchesResId)},
-                new Fragment[] {firstTabItem.fragment, secondTabItem.fragment});
+                new String[]{getResources().getString(storiesResId), getResources().getString(searchesResId)},
+                new Fragment[]{firstTabItem.fragment, secondTabItem.fragment});
         viewPager = (ViewPager) fragmentView.findViewById(R.id.view_pager);
         viewPager.setAdapter(pagerAdapter);
 
@@ -86,7 +88,7 @@ public abstract class TabFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden) {
+        if (!hidden) {
             viewPager.setAdapter(pagerAdapter);
             DDGActionBarManager.getInstance().getSlidingTabLayout().setViewPager(viewPager);
         }
@@ -108,17 +110,17 @@ public abstract class TabFragment extends Fragment {
         Animation anim = null;
         try {
             anim = AnimationUtils.loadAnimation(getActivity(), nextAnim);
-        } catch(Resources.NotFoundException e) {
+        } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
 
-        if(anim==null) {
+        if (anim == null) {
             return null;
         }
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                if(enter) {
+                if (enter) {
                     DDGActionBarManager.getInstance().showTabLayout();
                 }
             }

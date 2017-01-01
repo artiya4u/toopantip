@@ -3,7 +3,6 @@ package com.duckduckgo.mobile.android.views;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -71,13 +70,13 @@ public class SearchListView extends ListView implements AdapterView.OnItemClickL
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        if(position<recentLimit) {
+        if (position < recentLimit) {
             Object adapter = getAdapter();
             Cursor c = null;
             HistoryObject obj = null;
 
             Object itemClicked = ((Adapter) adapter).getItem(position);
-            if(itemClicked instanceof Cursor) {
+            if (itemClicked instanceof Cursor) {
                 c = (Cursor) itemClicked;
                 obj = new HistoryObject(c);
             }
@@ -91,7 +90,7 @@ public class SearchListView extends ListView implements AdapterView.OnItemClickL
             Cursor c = null;
             String query = null;
 
-            if(adapter instanceof SearchAdapter) {
+            if (adapter instanceof SearchAdapter) {
                 c = (Cursor) ((SearchAdapter) adapter).getItem(position);
                 query = c.getString(c.getColumnIndex("query"));
             }

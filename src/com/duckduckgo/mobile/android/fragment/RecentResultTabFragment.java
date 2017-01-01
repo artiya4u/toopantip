@@ -2,9 +2,7 @@ package com.duckduckgo.mobile.android.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -54,7 +52,7 @@ public class RecentResultTabFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if(PreferencesManager.getRecordHistory()) {
+        if (PreferencesManager.getRecordHistory()) {
             recentSearchListView = (RecentSearchListView) getListView();
             recentResultAdapter = new RecentResultCursorAdapter(getActivity(), DDGApplication.getDB().getCursorSearchHistory(), true);
             recentSearchListView.setAdapter(recentResultAdapter);
@@ -66,7 +64,8 @@ public class RecentResultTabFragment extends ListFragment {
 
                 @Override
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                    final int currentFirstVisibleItem = recentSearchListView.getFirstVisiblePosition();;
+                    final int currentFirstVisibleItem = recentSearchListView.getFirstVisiblePosition();
+                    ;
                     if (currentFirstVisibleItem > lastFirstVisibleItem) {
                         DDGActionBarManager.getInstance().tryToHideTab();
                     } else if (currentFirstVisibleItem < lastFirstVisibleItem) {
@@ -100,7 +99,7 @@ public class RecentResultTabFragment extends ListFragment {
 
     @Subscribe
     public void onSyncAdaptersEvent(SyncAdaptersEvent event) {
-        if(recentResultAdapter!=null) {
+        if (recentResultAdapter != null) {
             recentResultAdapter.changeCursor(DDGApplication.getDB().getCursorSearchHistory());
             recentResultAdapter.notifyDataSetChanged();
         }

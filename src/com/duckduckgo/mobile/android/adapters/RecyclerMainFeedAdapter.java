@@ -97,7 +97,7 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
         blinkanimation.setRepeatMode(Animation.REVERSE);*/
 
         menu = new MenuBuilder(context);
-        ((Activity)context).getMenuInflater().inflate(R.menu.feed, menu);
+        ((Activity) context).getMenuInflater().inflate(R.menu.feed, menu);
         feedMenu = new DDGOverflowMenu(context);
     }
 
@@ -131,7 +131,7 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
 
             final String feedType = feed.getType();
 
-            holder.imageViewFeedIcon.setType(feedType);	// stored source id in imageview
+            holder.imageViewFeedIcon.setType(feedType);    // stored source id in imageview
 
             //holder.imageViewFeedIcon.setOnClickListener(sourceClickListener);
 
@@ -142,13 +142,13 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
                 @Override
                 public void onClick(View v) {
                     //BusProvider.getInstance().post(new SourceFilterEvent(itemView, sourceType, feed));
-                    if(DDGControlVar.targetSource!=null) {
-                        DDGControlVar.targetSource=null;
+                    if (DDGControlVar.targetSource != null) {
+                        DDGControlVar.targetSource = null;
                         BusProvider.getInstance().post(new FeedCancelSourceFilterEvent());
                     } else {
                         DDGControlVar.targetSource = sourceType;
                         DDGControlVar.hasUpdatedFeed = false;
-                        Log.e("aaa", "ddg target source: "+DDGControlVar.targetSource);
+                        Log.e("aaa", "ddg target source: " + DDGControlVar.targetSource);
                         BusProvider.getInstance().post(new SourceFilterEvent(itemView, sourceType, feed));
                         filterSource(sourceType);
                     }
@@ -198,8 +198,8 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
             //Set the Title
             //holder.textViewTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, DDGControlVar.mainTextSize);
             holder.textViewTitle.setText(feed.getTitle());
-			/*
-			String feedId = feed.getId();
+            /*
+            String feedId = feed.getId();
 
 			if(DDGControlVar.readArticles.contains(feedId)){
 				holder.textViewTitle.setTextColor(Color.GRAY);
@@ -207,7 +207,7 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
 
             // FIXME : it'd be good to reset color to default color for textview in layout XML
             holder.textViewTitle.setTextColor(context.getResources().getColor(R.color.feed_title));
-            if(DDGControlVar.readArticles.contains(feedId)){
+            if (DDGControlVar.readArticles.contains(feedId)) {
                 holder.textViewTitle.setTextColor(context.getResources().getColor(R.color.feed_title_viewed));
             }
 
@@ -225,8 +225,8 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
             holder.frameCategoryContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(DDGControlVar.targetCategory!=null) {
-                        DDGControlVar.targetCategory=null;
+                    if (DDGControlVar.targetCategory != null) {
+                        DDGControlVar.targetCategory = null;
                         BusProvider.getInstance().post(new FeedCancelCategoryFilterEvent());
                     } else {
                         DDGControlVar.targetCategory = category;
@@ -315,11 +315,11 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
                     String host = feedUrl.getHost();
                     if (host.indexOf(".") != host.lastIndexOf(".")) {
                         //Cut off the beginning, because we don't want/need it
-                        host = host.substring(host.indexOf(".")+1);
+                        host = host.substring(host.indexOf(".") + 1);
                     }
 
                     Bitmap bitmap = DDGApplication.getImageCache().getBitmapFromCache("DUCKDUCKICO--" + feedType, false);
-                    if(bitmap != null){
+                    if (bitmap != null) {
                         holder.imageViewFeedIcon.setBitmap(bitmap);
                     }
                 }
@@ -365,11 +365,11 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
     }
 
     private void showMenu(View anchor, FeedObject feed) {
-        if(feedMenu==null) {
+        if (feedMenu == null) {
             feedMenu = new DDGOverflowMenu(context);
         }
-        if(!feedMenu.isShowing()) {
-            if(DDGApplication.getDB().isSaved(feed.getId())) {
+        if (!feedMenu.isShowing()) {
+            if (DDGApplication.getDB().isSaved(feed.getId())) {
                 menu.findItem(R.id.action_add_favorite).setVisible(false);
                 menu.findItem(R.id.action_remove_favorite).setVisible(true);
             } else {
@@ -394,21 +394,21 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
     }
 
     public void addSourceData(List<FeedObject> newSources) {
-        Log.e("aaa", "add source data, data size: "+data.size());
-        for(FeedObject feed : data) {
-            Log.e("aaa", "old feed: "+feed.getTitle());
+        Log.e("aaa", "add source data, data size: " + data.size());
+        for (FeedObject feed : data) {
+            Log.e("aaa", "old feed: " + feed.getTitle());
         }
-        for(FeedObject newFeed : newSources) {
+        for (FeedObject newFeed : newSources) {
             boolean isPresent = false;
-            for(FeedObject feed : data) {
-                if(feed.getId().equals(newFeed.getId())) {
+            for (FeedObject feed : data) {
+                if (feed.getId().equals(newFeed.getId())) {
                     isPresent = true;
                 }
             }
             //boolean isPresent = data.contains(feed);
-            Log.e("aaa", "feed: "+newFeed.getTitle()+" - is present: "+isPresent);
+            Log.e("aaa", "feed: " + newFeed.getTitle() + " - is present: " + isPresent);
 
-            if(!isPresent) {
+            if (!isPresent) {
                 data.add(newFeed);
                 notifyItemInserted(data.size());
             }
@@ -417,8 +417,8 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
 
     public void filterCategory(String category) {
         int i = data.size() - 1;
-        for(; i>=0; i--) {
-            if(!data.get(i).getCategory().equals(category)) {
+        for (; i >= 0; i--) {
+            if (!data.get(i).getCategory().equals(category)) {
                 data.remove(i);
                 notifyItemRemoved(i);
             }
@@ -427,8 +427,8 @@ public class RecyclerMainFeedAdapter extends RecyclerView.Adapter<RecyclerMainFe
 
     private void filterSource(String source) {
         int i = data.size() - 1;
-        for(; i>=0; i--) {
-            if(!data.get(i).getType().equals(source)) {
+        for (; i >= 0; i--) {
+            if (!data.get(i).getType().equals(source)) {
                 data.remove(i);
                 notifyItemRemoved(i);
             }

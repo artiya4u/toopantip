@@ -17,14 +17,11 @@ package com.duckduckgo.mobile.android.views;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
@@ -35,8 +32,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import com.duckduckgo.mobile.android.R;
-
-import org.w3c.dom.Text;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -114,7 +109,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     /**
      * Set the custom {@link TabColorizer} to be used.
-     *
+     * <p>
      * If you only require simple custmisation then you can use
      * {@link #setSelectedIndicatorColors(int...)} and {@link #setDividerColors(int...)} to achieve
      * similar effects.
@@ -154,7 +149,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * Set the custom layout to be inflated for the tab views.
      *
      * @param layoutResId Layout id to be inflated
-     * @param textViewId id of the {@link TextView} in the inflated view
+     * @param textViewId  id of the {@link TextView} in the inflated view
      */
     public void setCustomTabView(int layoutResId, int textViewId) {
         mTabViewLayoutId = layoutResId;
@@ -183,9 +178,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
      */
     protected TextView createDefaultTabView(Context context) {
         TextView textView = new TextView(context);
-        textView.setGravity(Gravity.TOP|Gravity.CENTER);
+        textView.setGravity(Gravity.TOP | Gravity.CENTER);
         textView.setTextAppearance(context, R.style.TabTitle);
-        textView.setHeight((int)getResources().getDimension(R.dimen.actionbar_tab_height2));
+        textView.setHeight((int) getResources().getDimension(R.dimen.actionbar_tab_height2));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // If we're running on Honeycomb or newer, then we can use the Theme's
@@ -217,8 +212,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
             width = display.getWidth();
         }
 
-        if(width > getResources().getDimension(R.dimen.tab_small)
-                || getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE) {
+        if (width > getResources().getDimension(R.dimen.tab_small)
+                || getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             textView.setWidth(width / mViewPager.getAdapter().getCount());
         }
 
@@ -226,7 +221,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     private void populateTabStrip() {
-       removeOldSelection();
+        removeOldSelection();
         oldSelection = null;
         final PagerAdapter adapter = mViewPager.getAdapter();
         final View.OnClickListener tabClickListener = new TabClickListener();
@@ -267,7 +262,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     private void removeOldSelection() {
-        if(oldSelection!=null) {
+        if (oldSelection != null) {
             oldSelection.setSelected(false);
         }
     }
@@ -281,12 +276,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
         View selectedChild = mTabStrip.getChildAt(tabIndex);
         if (selectedChild != null) {
 
-            if(positionOffset==0 && selectedChild!=oldSelection) {
+            if (positionOffset == 0 && selectedChild != oldSelection) {
                 selectedChild.setSelected(true);
                 removeOldSelection();
-                ((TextView)selectedChild).setTextColor(getResources().getColor(R.color.actionbar_tab_selected));
-                if(oldSelection!=null) {
-                    ((TextView)oldSelection).setTextColor(getResources().getColor(R.color.actionbar_tab_unselected));
+                ((TextView) selectedChild).setTextColor(getResources().getColor(R.color.actionbar_tab_selected));
+                if (oldSelection != null) {
+                    ((TextView) oldSelection).setTextColor(getResources().getColor(R.color.actionbar_tab_unselected));
                 }
                 oldSelection = selectedChild;
             }

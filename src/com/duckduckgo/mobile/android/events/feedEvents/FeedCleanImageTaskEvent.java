@@ -4,5 +4,6 @@ import com.duckduckgo.mobile.android.events.Event;
 
 public class FeedCleanImageTaskEvent extends Event {
 
-	public FeedCleanImageTaskEvent() {}
+    public FeedCleanImageTaskEvent() {
+    }
 }

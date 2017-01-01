@@ -10,16 +10,12 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.duckduckgo.mobile.android.DDGApplication;
 import com.duckduckgo.mobile.android.bus.BusProvider;
 import com.duckduckgo.mobile.android.events.HistoryItemLongClickEvent;
 import com.duckduckgo.mobile.android.events.HistoryItemSelectedEvent;
-import com.duckduckgo.mobile.android.events.feedEvents.MainFeedItemSelectedEvent;
-import com.duckduckgo.mobile.android.events.feedEvents.SavedFeedItemLongClickEvent;
-import com.duckduckgo.mobile.android.objects.FeedObject;
 import com.duckduckgo.mobile.android.objects.history.HistoryObject;
 
-public class RecentFeedListView extends ListView implements android.widget.AdapterView.OnItemClickListener{//}, android.widget.AdapterView.OnItemLongClickListener {
+public class RecentFeedListView extends ListView implements android.widget.AdapterView.OnItemClickListener {//}, android.widget.AdapterView.OnItemLongClickListener {
 
     public RecentFeedListView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -41,7 +37,7 @@ public class RecentFeedListView extends ListView implements android.widget.Adapt
         }
 
         if (obj != null) {
-            Log.e("aaa", "object: "+obj.toString());
+            Log.e("aaa", "object: " + obj.toString());
             BusProvider.getInstance().post(new HistoryItemSelectedEvent(obj));
             //Log.e("aaa", "obj!=null, "+obj.toString());
             //FeedObject feed = DDGApplication.getDB().selectFeedById(obj.getFeedId());
@@ -65,13 +61,13 @@ public class RecentFeedListView extends ListView implements android.widget.Adapt
         HistoryObject obj = null;
 
         Object itemClicked = ((Adapter) adapter).getItem(position);
-        if(itemClicked instanceof Cursor) {
+        if (itemClicked instanceof Cursor) {
             c = (Cursor) itemClicked;
             obj = new HistoryObject(c);
         }
 
         if (obj != null) {
-            Log.e("aaa", "history object: "+obj.toString());
+            Log.e("aaa", "history object: " + obj.toString());
             BusProvider.getInstance().post(new HistoryItemLongClickEvent(obj));
             return true;
         }

@@ -10,5 +10,7 @@ public class WebViewOpenMenuEvent extends Event {
 
     public WebViewOpenMenuEvent(View anchorView) {
         this.anchorView = anchorView;
-    };
+    }
+
+    ;
 }

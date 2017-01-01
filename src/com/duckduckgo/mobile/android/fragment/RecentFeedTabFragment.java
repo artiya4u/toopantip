@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +12,15 @@ import android.widget.TextView;
 import com.duckduckgo.mobile.android.DDGApplication;
 import com.duckduckgo.mobile.android.R;
 import com.duckduckgo.mobile.android.actionbar.DDGActionBarManager;
-import com.duckduckgo.mobile.android.adapters.RecentFeedCursorAdapter;
 import com.duckduckgo.mobile.android.adapters.RecyclerRecentFeedAdapter;
 import com.duckduckgo.mobile.android.bus.BusProvider;
 import com.duckduckgo.mobile.android.events.SyncAdaptersEvent;
 import com.duckduckgo.mobile.android.events.feedEvents.FeedCancelCategoryFilterEvent;
 import com.duckduckgo.mobile.android.events.feedEvents.FeedCancelSourceFilterEvent;
-import com.duckduckgo.mobile.android.objects.FeedObject;
 import com.duckduckgo.mobile.android.util.DDGControlVar;
 import com.duckduckgo.mobile.android.util.PreferencesManager;
 import com.duckduckgo.mobile.android.views.DDGRecyclerView;
-import com.duckduckgo.mobile.android.views.RecentFeedListView;
 import com.squareup.otto.Subscribe;
-
-import java.util.ArrayList;
 
 public class RecentFeedTabFragment extends Fragment/*ListFragment*/ /*implements AdapterView.OnItemLongClickListener*/ {
 
@@ -75,18 +69,19 @@ public class RecentFeedTabFragment extends Fragment/*ListFragment*/ /*implements
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy > 10) {
+                if (dy > 10) {
                     DDGActionBarManager.getInstance().tryToHideTab();
-                } else if(dy < -10) {
+                } else if (dy < -10) {
                     DDGActionBarManager.getInstance().tryToShowTab();
                 }
                 recyclerScrollPerformed = true;
             }
+
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if(newState==RecyclerView.SCROLL_STATE_IDLE) {
-                    if(recyclerScrollPerformed) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (recyclerScrollPerformed) {
                         recyclerScrollPerformed = false;
                     } else {
                         DDGActionBarManager.getInstance().tryToShowTab();
@@ -109,7 +104,7 @@ public class RecentFeedTabFragment extends Fragment/*ListFragment*/ /*implements
     }
 
     public void checkIfRecordHistory() {
-        if(!PreferencesManager.getRecordHistory()) {
+        if (!PreferencesManager.getRecordHistory()) {
 
             TextView title = (TextView) fragmentView.findViewById(R.id.empty_title);
             title.setText(getResources().getString(R.string.disabled_recents_title));
@@ -149,7 +144,7 @@ public class RecentFeedTabFragment extends Fragment/*ListFragment*/ /*implements
 
     @Subscribe
     public void onSyncAdaptersEvent(SyncAdaptersEvent event) {
-        if(recyclerRecentFeedAdapter!=null) {
+        if (recyclerRecentFeedAdapter != null) {
             recyclerRecentFeedAdapter.changeData(DDGApplication.getDB().getAllRecentFeed());
         }
     }

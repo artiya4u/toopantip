@@ -46,9 +46,9 @@ public class RecentsFragment extends TabFragment {
 
     @Subscribe
     public void onOverflowButtonClickEvent(OverflowButtonClickEvent event) {
-        if(DDGControlVar.mDuckDuckGoContainer.currentFragmentTag.equals(getTag()) && recentMenu!=null) {
+        if (DDGControlVar.mDuckDuckGoContainer.currentFragmentTag.equals(getTag()) && recentMenu != null) {
             recentMenu.findItem(R.id.action_recents).setEnabled(false);
-            if(overflowMenu!=null && overflowMenu.isShowing()) {
+            if (overflowMenu != null && overflowMenu.isShowing()) {
                 return;
             }
 

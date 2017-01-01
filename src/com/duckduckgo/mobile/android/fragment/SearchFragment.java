@@ -1,6 +1,5 @@
 package com.duckduckgo.mobile.android.fragment;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Rect;
@@ -8,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.menu.MenuBuilder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -24,7 +21,6 @@ import android.widget.ListView;
 
 import com.duckduckgo.mobile.android.DDGApplication;
 import com.duckduckgo.mobile.android.R;
-import com.duckduckgo.mobile.android.actionbar.DDGActionBarManager;
 import com.duckduckgo.mobile.android.adapters.FavoriteResultCursorAdapter;
 import com.duckduckgo.mobile.android.adapters.RecentResultCursorAdapter;
 import com.duckduckgo.mobile.android.adapters.SearchAdapter;
@@ -36,7 +32,6 @@ import com.duckduckgo.mobile.android.events.ShowAutoCompleteResultsEvent;
 import com.duckduckgo.mobile.android.events.SyncAdaptersEvent;
 import com.duckduckgo.mobile.android.objects.history.HistoryObject;
 import com.duckduckgo.mobile.android.util.DDGControlVar;
-import com.duckduckgo.mobile.android.util.SCREEN;
 import com.duckduckgo.mobile.android.views.DDGOverflowMenu;
 import com.duckduckgo.mobile.android.views.SearchListView;
 import com.squareup.otto.Subscribe;
@@ -120,7 +115,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
         super.onResume();
         syncAdapters();
 
-        if(DDGControlVar.isAutocompleteActive) {
+        if (DDGControlVar.isAutocompleteActive) {
             autoCompleteResultListView.setAdapter(DDGControlVar.mDuckDuckGoContainer.acAdapter);
         } else {
             autoCompleteResultListView.setAdapter(DDGControlVar.mDuckDuckGoContainer.recentResultCursorAdapter);
@@ -132,7 +127,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
     @Override
     public void onPause() {
         super.onPause();
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             search_container.getViewTreeObserver().removeOnGlobalLayoutListener(this);
         } else {
             search_container.getViewTreeObserver().removeGlobalOnLayoutListener(this);
@@ -142,12 +137,12 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden) {
+        if (!hidden) {
             showAutoCompleteResults(false);
 
             syncAdapters();
 
-            if(DDGControlVar.isAutocompleteActive) {
+            if (DDGControlVar.isAutocompleteActive) {
                 autoCompleteResultListView.setAdapter(DDGControlVar.mDuckDuckGoContainer.acAdapter);
                 DDGControlVar.mDuckDuckGoContainer.acAdapter.notifyDataSetChanged();
             } else {
@@ -155,7 +150,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
                 DDGControlVar.mDuckDuckGoContainer.recentResultCursorAdapter.notifyDataSetChanged();
             }
         } else {
-            if(overflowMenu!=null && overflowMenu.isShowing()) {
+            if (overflowMenu != null && overflowMenu.isShowing()) {
                 overflowMenu.dismiss();
             }
         }
@@ -169,7 +164,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(DDGControlVar.isAutocompleteActive) {
+        if (DDGControlVar.isAutocompleteActive) {
             BusProvider.getInstance().post(new AutoCompleteResultClickEvent(position));
         } else {
             Object adapter = parent.getAdapter();
@@ -196,7 +191,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
 
     @Subscribe
     public void onShowAutoCompleteResultsEvent(ShowAutoCompleteResultsEvent event) {
-        if(getActivity()!=null) {
+        if (getActivity() != null) {
             showAutoCompleteResults(event.isVisible);
         }
 
@@ -212,7 +207,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
         int totalHeight = search_container.getRootView().getHeight();
         int visibleHeight = search_container.getHeight();
 
-        if(isAdded()) {
+        if (isAdded()) {
 
             int statusBar = getStatusBarHeight();
             int navigationBar = getNavigationBarHeight();
@@ -246,7 +241,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
 
     private int getNavigationBarHeight() {
         int id = getActivity().getResources().getIdentifier(
-                getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT? "navigation_bar_height" : "navigation_bar_height_landscape",
+                getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? "navigation_bar_height" : "navigation_bar_height_landscape",
                 "dimen", "android");
         if (id > 0) {
             return getActivity().getResources().getDimensionPixelSize(id);
@@ -307,7 +302,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
      * @param openSearch whether the search results view should be visible or recent saved view
      */
     private void toggleSearchView(boolean openSearch) {
-        if(openSearch) {
+        if (openSearch) {
             fragmentView.findViewById(R.id.recent_saved_container).setVisibility(View.GONE);
             autoCompleteResultListView.setVisibility(View.VISIBLE);
         } else {
@@ -325,7 +320,7 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
     }
 
     private void toggleDivider(boolean visible) {
-        if(visible) {
+        if (visible) {
             fragmentView.findViewById(R.id.search_divider).setVisibility(View.VISIBLE);
         } else {
             fragmentView.findViewById(R.id.search_divider).setVisibility(View.GONE);
@@ -334,8 +329,8 @@ public class SearchFragment extends Fragment implements ViewTreeObserver.OnGloba
 
     @Subscribe
     public void onOverflowButtonClickEvent(OverflowButtonClickEvent event) {
-        if(DDGControlVar.mDuckDuckGoContainer.currentFragmentTag.equals(getTag()) && searchMenu!=null) {
-            if(overflowMenu!=null && overflowMenu.isShowing()) {
+        if (DDGControlVar.mDuckDuckGoContainer.currentFragmentTag.equals(getTag()) && searchMenu != null) {
+            if (overflowMenu != null && overflowMenu.isShowing()) {
                 return;
             }
 

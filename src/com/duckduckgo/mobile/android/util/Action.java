@@ -1,5 +1,5 @@
 package com.duckduckgo.mobile.android.util;
 
-public interface Action{
-	void Execute();
+public interface Action {
+    void Execute();
 }

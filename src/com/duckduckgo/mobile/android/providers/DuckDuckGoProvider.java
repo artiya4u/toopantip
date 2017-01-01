@@ -10,7 +10,7 @@ import android.net.Uri;
 public class DuckDuckGoProvider extends ContentProvider {
 
     private static final String TAG = "DuckDuckGoProvider";
-    
+
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         return 0;
@@ -44,11 +44,11 @@ public class DuckDuckGoProvider extends ContentProvider {
 
         // we'll simulate through a MatrixCursor.
         MatrixCursor cursor = new MatrixCursor(new String[]{SearchManager.SUGGEST_COLUMN_TEXT_1,
-                                                            SearchManager.SUGGEST_COLUMN_TEXT_2,
-                                                            SearchManager.SUGGEST_COLUMN_QUERY,
-                                                            "_id"});
+                SearchManager.SUGGEST_COLUMN_TEXT_2,
+                SearchManager.SUGGEST_COLUMN_QUERY,
+                "_id"});
 
-		cursor.addRow(new Object[]{"Search DuckDuckGo", query, query, 0});
+        cursor.addRow(new Object[]{"Search DuckDuckGo", query, query, 0});
 
         return cursor;
     }
