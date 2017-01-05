@@ -99,6 +99,9 @@
 <!--
         <service android:name="com.duckduckgo.mobile.android.subscribers.MainSubscriber" />
 	-->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="308c3a97710cd220de5ff0f9f7da39c117ac4a32" />
     </application>
 
 </manifest>

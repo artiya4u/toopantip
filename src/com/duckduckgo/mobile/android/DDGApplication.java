@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.webkit.CookieSyncManager;
 
+import com.crashlytics.android.Crashlytics;
 import com.duckduckgo.mobile.android.db.DdgDB;
 import com.duckduckgo.mobile.android.download.FileCache;
 import com.duckduckgo.mobile.android.download.ImageCache;
@@ -19,6 +20,8 @@ import com.duckduckgo.mobile.android.util.DDGControlVar;
 import com.duckduckgo.mobile.android.util.PreferencesManager;
 
 import java.io.File;
+
+import io.fabric.sdk.android.Fabric;
 
 public class DDGApplication extends Application {
 
@@ -48,6 +51,7 @@ public class DDGApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         db = new DdgDB(this);
         fileCache = new FileCache(this.getApplicationContext());
